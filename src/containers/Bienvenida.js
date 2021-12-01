@@ -18,12 +18,10 @@ export const Bienvenida = () => {
 
         <ButtonContainer className="gap-2">
           <Link to="/login">
-            <ButtonBlue>
-              Iniciar Sesión
-            </ButtonBlue>
-            <ButtonOrange>
-              Registrarse
-            </ButtonOrange>
+            <ButtonBlue>Iniciar Sesión</ButtonBlue>
+          </Link>
+          <Link to="/registro">
+            <ButtonOrange>Registrarse</ButtonOrange>
           </Link>
         </ButtonContainer>
       </Container>

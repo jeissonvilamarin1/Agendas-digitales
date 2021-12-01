@@ -36,6 +36,7 @@ export const ButtonBlue = styled.button`
   border-radius: 15px;
   color: white;
   border: 1px solid #0a8791;
+  margin-bottom: 15px;
 `;
 
 export const ButtonOrange = styled.button`

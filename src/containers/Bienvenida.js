@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ButtonBlue ,ButtonContainer, SectionImage, SectionTitle } from "../styles/styles";
+import { ButtonBlue ,ButtonContainer, ButtonOrange, SectionImage, SectionTitle } from "../styles/styles";
 
 export const Bienvenida = () => {
   return (
@@ -21,6 +21,9 @@ export const Bienvenida = () => {
             <ButtonBlue>
               Iniciar Sesión
             </ButtonBlue>
+            <ButtonOrange>
+              Registrarse
+            </ButtonOrange>
           </Link>
         </ButtonContainer>
       </Container>

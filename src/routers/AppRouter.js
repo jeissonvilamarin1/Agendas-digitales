@@ -5,6 +5,8 @@ import { Bienvenida } from '../containers/Bienvenida'
 import { Login } from '../containers/Login'
 import { Registro } from '../containers/Registro'
 import { Portada } from '../containers/Portada'
+import { Calendario } from '../containers/Calendario';
+import { Perfil } from '../containers/Perfil';
 
 
 const AppRouter = () => {
@@ -16,6 +18,8 @@ const AppRouter = () => {
           <Route path="/login" element={<Login/>} />
           <Route path="/registro" element={<Registro/>} />
           <Route path="/home" element={<Home/>} />
+          <Route path="/calendario" element={<Calendario/>} />
+          <Route path="/perfil" element={<Perfil/>} />
         </Routes>
       </BrowserRouter>
   );

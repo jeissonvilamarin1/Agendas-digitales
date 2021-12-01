@@ -8,7 +8,7 @@ export const FormularioRegistro = () => {
       return (
         <>
           <Formik
-            initialValues={{ nombre: "", correo: "" }}
+            initialValues={{ nombre: "", correo: "", password: "" }}
             validate={(valores) => {
               let errores = {};
 
@@ -31,12 +31,12 @@ export const FormularioRegistro = () => {
               return errores;
             }}
             onSubmit={(valores, { resetForm }) => {
-              resetForm();
               console.log("Formulario enviado");
               setFormularioEnviado(true);
               setTimeout(() => {
                 setFormularioEnviado(false);
               }, 3000);
+              resetForm();
             }}
           >
             {({ errors }) => (

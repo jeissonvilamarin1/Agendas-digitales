@@ -67,3 +67,35 @@ export const ErrorInfo = styled.h4`
   line-height: 24px;
   text-align: start;
 `;
+
+export const Menu = styled.nav`
+      background-color:rgba(10, 135, 145, 0.6);
+      max-width: 425px;
+      width: 100%;
+      height: 85px;
+      position: fixed;
+      bottom: -10px;
+      border-radius: 10px;
+`;
+
+export const MenuList = styled.ul`
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     margin-top: 20px;
+     padding-left: 0;
+`;
+
+export const MenuListItem = styled.li`
+     text-decoration: none;
+     list-style: none;
+`;
+
+export const ContainerHome = styled.div`
+  margin: 0 auto;
+  max-width: 425px;
+  max-height: 640px;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
+`;

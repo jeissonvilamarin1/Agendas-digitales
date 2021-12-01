@@ -6,10 +6,10 @@
 
 .container{
       max-width: 425px;
-      max-height: 530px;
+      max-height: 640px;
       height: 100vh;
       width: 100vw;
-      margin-top: 40px;
+      padding-top: 40px;
 }
 
 .form-input{

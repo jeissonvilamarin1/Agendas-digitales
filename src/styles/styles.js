@@ -94,8 +94,58 @@ export const MenuListItem = styled.li`
 export const ContainerHome = styled.div`
   margin: 0 auto;
   max-width: 425px;
-  max-height: 640px;
+  max-height: 900px;
   height: 100vh;
   width: 100vw;
   background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
+      display: flex;
+      flex-direction: column;
+  `;
+
+export const CardWelcomeContainer = styled.div`
+  width: 280px;
+  height: 59px;
+  background: #ffffff;
+  margin: 35px 0 30px 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 15px 15px 0px;
 `;
+
+export const CardWelcomeText = styled.h4`
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 25px;
+`;
+
+export const CardContainer = styled.div`
+  padding: 25px;
+  margin: 0 auto;
+  height: 60%;
+  width: 280px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CardCoverContainer = styled.div`
+  width: 225px;
+  height: 80%;
+  border: 1px dashed #969b9b;
+  border-radius: 10px;
+`;
+
+
+export const CardQuote = styled.h4`
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 25px;
+`;
+

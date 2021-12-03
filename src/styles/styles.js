@@ -98,31 +98,40 @@ export const ContainerHome = styled.div`
   height: 100vh;
   width: 100vw;
   background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
-      display: flex;
-      flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
   `;
 
 export const CardWelcomeContainer = styled.div`
   width: 280px;
   height: 59px;
   background: #ffffff;
-  margin: 35px 0 30px 0;
+  margin: 25px 0 25px 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 15px 15px 0px;
+  padding: 5px 0 5px 20px;
 `;
 
 export const CardWelcomeText = styled.h4`
-  font-weight: 500;
-  font-size: 9px;
-  line-height: 11px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0.04em;
-  margin-bottom: 25px;
+  color: #0a8791;
+`;
+export const CardWelcomeQuestion = styled.p`
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #0e122b;
+  letter-spacing: 0.04em;
 `;
 
 export const CardContainer = styled.div`
   padding: 25px;
   margin: 0 auto;
-  height: 60%;
+  height: 95%;
   width: 280px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   background-color: white;
@@ -131,6 +140,7 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 20px;
 `;
 
 export const CardCoverContainer = styled.div`
@@ -138,14 +148,56 @@ export const CardCoverContainer = styled.div`
   height: 80%;
   border: 1px dashed #969b9b;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 
-export const CardQuote = styled.h4`
-  font-weight: 500;
+export const CardQuote = styled.p`
+  font-style: normal;
+  font-weight: 600;
   font-size: 9px;
   line-height: 11px;
   letter-spacing: 0.04em;
   margin-bottom: 25px;
+  color: black;
 `;
 
+export const CardsContainer = styled.div`
+  padding: 25px;
+  margin: 0 auto;
+  width: auto;
+  height: 70vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: 425px;
+  width: 100vw;
+  scrollbar-color: grey;
+
+  &&::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  &&::-webkit-scrollbar-track {
+    background: transparent;
+    opacity: 0.8;
+    border-radius: 10px;
+  }
+
+  &&::-webkit-scrollbar-thumb {
+    background: rgba(240, 240, 240, 0.3);
+    border-radius: 30px;
+    border: 1px solid rgba(162, 162, 162, 0.4);
+    opacity: 0.8;
+  }
+
+  &&::-webkit-scrollbar-thumb:hover {
+    background: rgba(240, 240, 240, 0.5);
+  }
+
+  &&::-webkit-scrollbar-thumb:active {
+    background: rgba(240, 240, 240, 0.5);
+  }
+`;

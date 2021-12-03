@@ -7,8 +7,11 @@ import {
   SectionImageLogin,
   SectionTitle,
 } from "../styles/styles";
+import Buttonlogin from "../components/Buttonlogin";
 
 export const Login = () => {
+
+
   return (
     <>
       <Container className="container d-flex flex-column align-items-center justify-content-center">
@@ -23,7 +26,11 @@ export const Login = () => {
         </SectionTitle>
 
         <ButtonContainer className="gap-2">
-          <Formulario />
+
+          <Formulario/>
+          <Buttonlogin/>
+        
+         
           <p className="text-small">
             ¿No tienes una cuenta?<Link to="/registro">ingresa aquí</Link>
           </p>

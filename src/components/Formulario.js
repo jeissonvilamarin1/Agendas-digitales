@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ButtonBlue, ErrorInfo, SuccessInfo } from "../styles/styles";
+import { loginEmailPassword } from "../actions/loginAction";
+import { useDispatch } from 'react-redux';
+
 
 export const Formulario = () => {
   const [formularioEnviado, setFormularioEnviado] = useState(false);
+  const dispatch = useDispatch()
+
+
 
   return (
     <>
       <Formik
-        initialValues={{ nombre: "", correo: "" }}
+        initialValues={{ password: "", correo: "" }}
         validate={(valores) => {
           let errores = {};
 
@@ -25,16 +31,17 @@ export const Formulario = () => {
           }
 
           //Validacion Contraseña
-          if (!valores.nombre) {
-            errores.nombre = "Por favor ingresa un nombre";
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)) {
-            errores.nombre = "El nombre solo puede contener letras";
+          if (!valores.password) {
+            errores.password = "Por favor ingresa un password";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.password)) {
+            errores.password = "El password solo puede contener letras";
           }
 
           return errores;
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
+          dispatch(loginEmailPassword(valores));
           console.log("Formulario enviado");
           setFormularioEnviado(true);
           setTimeout(() => {
@@ -42,7 +49,7 @@ export const Formulario = () => {
           }, 3000);
         }}
       >
-        {({ errors }) => (
+        {({ errors, handleChange,}) => (
           <Form>
             <Field
               type="text"
@@ -50,6 +57,7 @@ export const Formulario = () => {
               name="correo"
               placeholder="Ingresa tu email"
               className="form-input"
+              onChange={handleChange}
             />
             <ErrorMessage
               name="correo"
@@ -61,6 +69,7 @@ export const Formulario = () => {
               name="password"
               placeholder="Ingresa tu contraseña"
               className="form-input"
+              onChange={handleChange}
             />
             <ErrorMessage
               name="nombre"

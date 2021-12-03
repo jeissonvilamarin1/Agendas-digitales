@@ -15,7 +15,6 @@ export const Login = () => {
   return (
     <>
       <Container className="container d-flex flex-column align-items-center justify-content-center">
-        <h1>Hola Edith</h1>
         <SectionImageLogin
           src="https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638311452/Agendas%20Digitales/imagen-login_asj7qe.png"
           alt="Persona Estudiando en laptop"

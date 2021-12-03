@@ -17,14 +17,14 @@ export const Registro = () => {
 
   const dispatch = useDispatch();
 
-    const [formValues, handleInputChange] = useForm({
+    const [formValues] = useForm({
         nombre: '',
         email: '',
         pass1: '',
         pass2: ''
     });
 
-    const { nombre, email, pass1, pass2 } = formValues;
+    const { nombre, email, pass1 } = formValues;
 
     const handleRegistro = (e) => {
         e.preventDefault();

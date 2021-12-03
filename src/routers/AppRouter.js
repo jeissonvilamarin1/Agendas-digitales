@@ -15,10 +15,10 @@ import { Registro } from '../containers/Registro';
 const AppRouter = () => {
 
   const [logginok, setlogginok] = useState(false)
-  const auth = getAuth();
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
+    const auth = getAuth();
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName))

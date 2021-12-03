@@ -8,9 +8,7 @@ import {
   CardsContainer,
 } from "../styles/styles";
 import { Card } from '../components/Card';
-import { loginReducer } from '../reducers/loginReducer';
 import { useSelector } from 'react-redux';
-import { store } from '../store/store';
 
 
 export const Home = () => {

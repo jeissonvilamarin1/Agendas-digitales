@@ -19,7 +19,8 @@ export const loginGoogle = () => {
         signInWithPopup(auth, google)
             .then(({ user }) => {
                 console.log(user);
-                dispatch(login(user.uid, user.displayName))
+                dispatch(login(user.uid, user.displayName));
+
             })
             .catch(e => {
                 console.log(e);
@@ -40,8 +41,9 @@ export const loginFacebook = () => {
     };
   };
 
-export const loginEmailPassword = (email, password) => {
+export const loginEmailPassword = ({email, password}) => {
     return (dispatch) => {
+        
         const auth = getAuth()
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {

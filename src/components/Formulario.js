@@ -10,24 +10,23 @@ export const Formulario = () => {
   const dispatch = useDispatch()
 
 
-
   return (
     <>
       <Formik
-        initialValues={{ password: "", correo: "" }}
+        initialValues={{ password: "", email: "" }}
         validate={(valores) => {
           let errores = {};
 
-          //Validacion correo
-          if (!valores.correo) {
-            errores.correo = "Por favor ingresa un correo";
+          //Validacion email
+          if (!valores.email) {
+            errores.email = "Por favor ingresa un email";
           } else if (
             !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-              valores.correo
+              valores.email
             )
           ) {
-            errores.correo =
-              "El correo solo puede contener letras, numeros, puntos, y guiones";
+            errores.email =
+              "El email solo puede contener letras, numeros, puntos, y guiones";
           }
 
           //Validacion Contraseña
@@ -36,10 +35,11 @@ export const Formulario = () => {
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.password)) {
             errores.password = "El password solo puede contener letras";
           }
-
+          
           return errores;
         }}
         onSubmit={(valores, { resetForm }) => {
+          console.log("hola");
           resetForm();
           dispatch(loginEmailPassword(valores));
           console.log("Formulario enviado");
@@ -49,19 +49,19 @@ export const Formulario = () => {
           }, 3000);
         }}
       >
-        {({ errors, handleChange,}) => (
+        {({ errors, handleChange}) => (
           <Form>
             <Field
               type="text"
-              id="correo"
-              name="correo"
+              id="email"
+              name="email"
               placeholder="Ingresa tu email"
               className="form-input"
               onChange={handleChange}
             />
             <ErrorMessage
-              name="correo"
-              component={() => <ErrorInfo>{errors.correo}</ErrorInfo>}
+              name="email"
+              component={() => <ErrorInfo>{errors.email}</ErrorInfo>}
             />
             <Field
               type="password"
@@ -72,13 +72,13 @@ export const Formulario = () => {
               onChange={handleChange}
             />
             <ErrorMessage
-              name="nombre"
-              component={() => <ErrorInfo>{errors.nombre}</ErrorInfo>}
+              name="password"
+              component={() => <ErrorInfo>{errors.password}</ErrorInfo>}
             />
             <ButtonBlue type="submit">Ingresar</ButtonBlue>
-            {formularioEnviado && (
+            {formularioEnviado && 
               <SuccessInfo>Formulario enviado con exito!</SuccessInfo>
-            )}
+            }
           </Form>
         )}
       </Formik>

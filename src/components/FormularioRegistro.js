@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { ButtonBlue, ErrorInfo, SuccessInfo } from '../styles/styles';
+import { useDispatch } from 'react-redux';
+import { registerEmailPassword } from '../actions/registerAction';
 
 export const FormularioRegistro = () => {
       const [formularioEnviado, setFormularioEnviado] = useState(false)
+      const dispatch = useDispatch()
+
 
       return (
         <>
           <Formik
-            initialValues={{ nombre: "", correo: "", password: "" }}
+            initialValues={{ nombre: "", email: "", password: "" }}
             validate={(valores) => {
               let errores = {};
 
@@ -20,18 +24,19 @@ export const FormularioRegistro = () => {
                   "El nombre solo puede contener letras";
               }
 
-              //Validacion correo
-              if (!valores.correo) {
-                errores.correo = "Por favor ingresa un correo";
-              } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.correo)) {
-                errores.correo =
-                  "El correo solo puede contener letras, numeros, puntos, y guiones";
+              //Validacion email
+              if (!valores.email) {
+                errores.email = "Por favor ingresa un email";
+              } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)) {
+                errores.email =
+                  "El email solo puede contener letras, numeros, puntos, y guiones";
               }
 
               return errores;
             }}
             onSubmit={(valores, { resetForm }) => {
               console.log("Formulario enviado");
+              dispatch(registerEmailPassword(valores));
               setFormularioEnviado(true);
               setTimeout(() => {
                 setFormularioEnviado(false);
@@ -39,7 +44,7 @@ export const FormularioRegistro = () => {
               resetForm();
             }}
           >
-            {({ errors }) => (
+            {({ errors, handleChange }) => (
               <Form>
                 <Field
                   type="text"
@@ -47,6 +52,7 @@ export const FormularioRegistro = () => {
                   name="nombre"
                   placeholder="Ingresa tu nombre"
                   className="form-input"
+                  onChange={handleChange}
                 />
                 <ErrorMessage
                   name="nombre"
@@ -54,14 +60,15 @@ export const FormularioRegistro = () => {
                 />
                 <Field
                   type="text"
-                  id="correo"
-                  name="correo"
+                  id="email"
+                  name="email"
                   placeholder="Ingresa tu email"
                   className="form-input"
+                  onChange={handleChange}
                 />
                 <ErrorMessage
-                  name="correo"
-                  component={() => <ErrorInfo>{errors.correo}</ErrorInfo>}
+                  name="email"
+                  component={() => <ErrorInfo>{errors.email}</ErrorInfo>}
                 />
                 <Field
                   type="password"
@@ -69,6 +76,7 @@ export const FormularioRegistro = () => {
                   name="password"
                   placeholder="Ingresa tu contraseña"
                   className="form-input"
+                  onChange={handleChange}
                 />
                 <ButtonBlue type="submit">Registrarse</ButtonBlue>
                 {formularioEnviado && <SuccessInfo>Formulario enviado con exito!</SuccessInfo>}

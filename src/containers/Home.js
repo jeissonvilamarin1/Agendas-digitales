@@ -11,21 +11,21 @@ import { Card } from '../components/Card';
 import { useSelector } from "react-redux";
 import { store } from '../store/store';
 
-
 export const Home = () => {
-   
-  const informacion = useSelector((store) => store);     
+   const state = useSelector(store => store)
+        console.log(state)
 
       return (
         <ContainerHome>
           <CardWelcomeContainer>
-            <CardWelcomeText>{informacion.login.name}</CardWelcomeText>
+        
+            <CardWelcomeText>Hola {state.login.name}</CardWelcomeText>
             <CardWelcomeQuestion>¿Ya planeaste tu día?</CardWelcomeQuestion>
           </CardWelcomeContainer>
           <CardsContainer>
-            <Card/>
-            <Card/>
-            <Card/>
+            <Card />
+            <Card />
+            <Card />
           </CardsContainer>
           <Navbar />
         </ContainerHome>

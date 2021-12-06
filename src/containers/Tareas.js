@@ -11,7 +11,7 @@ const Tareas = () => {
 
 
   const user = useContext(AuthContext)
-  const correoUsuario= 'refrios77@yahoo.com'
+  const correoUsuario= user.email
   console.log(correoUsuario)
  
   const [arrayTareas, setArrayTareas] = useState(null);

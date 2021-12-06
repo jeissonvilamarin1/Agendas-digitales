@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { startLogout } from '../actions/loginAction'
 
 export const Perfil = () => {
@@ -13,6 +14,8 @@ export const Perfil = () => {
       return (
             <div>
                    <Button variant="btn btn-info" type="submit" onClick={handleLogout}>Salir</Button>
+                   <Link to="/tareas">
+                   <Button variant="btn btn-info" type="submit">Tareas</Button></Link>
                   
                   <h1>Perfil</h1>
             </div>

@@ -14,7 +14,7 @@ import { Registro } from '../containers/Registro';
 
 const AppRouter = () => {
 
-  const [logginok, setlogginok] = useState(false)
+  const [logginok, setlogginok] = useState({})
  
   const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ const AppRouter = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName))
-        setlogginok(true);
+        setlogginok(user);
 
       } else {
         setlogginok(false);

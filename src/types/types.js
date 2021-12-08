@@ -9,3 +9,9 @@ export const typeTareas={
    list:'list',
    delete:'delete'
 }
+
+export const typeMetas={
+    register:'register',
+    list:'list',
+    delete:'delete'
+ }

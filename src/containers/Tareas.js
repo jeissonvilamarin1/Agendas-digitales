@@ -1,11 +1,9 @@
 import React, { useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
 import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import AgregarTarea from "../components/AgregarTareas";
-import Listartareas from "../components/Listartareas";
-import { AuthContext } from '../components/authContext'
+
 
 
 const firestore = getFirestore();

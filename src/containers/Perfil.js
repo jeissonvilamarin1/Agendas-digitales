@@ -16,6 +16,8 @@ export const Perfil = () => {
                    <Button variant="btn btn-info" type="submit" onClick={handleLogout}>Salir</Button>
                    <Link to="/tareas">
                    <Button variant="btn btn-info" type="submit">Tareas</Button></Link>
+                   <Link to="/metas">
+                   <Button variant="btn btn-info" type="submit">Metas</Button></Link>
                   
                   <h1>Perfil</h1>
             </div>

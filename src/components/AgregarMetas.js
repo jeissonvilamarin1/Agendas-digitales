@@ -1,27 +1,25 @@
 import React, {useEffect} from "react";
 import { Container, Form, Col, Row, Button } from "react-bootstrap";
-import { listTasks, registerTasks } from "../actions/tasksAction";
+import { registerMetas } from "../actions/tasksAction";
 import { useDispatch } from 'react-redux';
 
 
-const AgregarTarea = ({id, arrayTareas }) => {
+const AgregarMetas= ({id, arrayMetas}) => {
 console.log(id)
-
 const dispatch = useDispatch();
 
 const hanleRegistro= e =>{
   e.preventDefault();
-  dispatch(registerTasks(arrayTareas, id));
+  dispatch(registerMetas(arrayMetas, id));
 }
 
-
-  return (
+return (
     <Container>
       <Form onSubmit={hanleRegistro}>
         <Row className="mb-5">
          
           <Col>
-            <Button type="submit"> AgregarTarea</Button>
+            <Button type="submit"> AgregarMeta</Button>
           </Col>
         </Row>
       </Form>
@@ -30,4 +28,4 @@ const hanleRegistro= e =>{
   );
 };
 
-export default AgregarTarea;
+export default AgregarMetas;

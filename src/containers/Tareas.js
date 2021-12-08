@@ -28,14 +28,14 @@ const Tareas = () => {
       const infoDocu = consulta.data();
       console.log(infoDocu)
       console.log(infoDocu.mensaje)
-      return setArrayTareas(infoDocu.tareas);
+      return (infoDocu.tareas);
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: [...fakeData] });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       console.log(infoDocu)
-      return setArrayTareas(infoDocu.tareas);
+      return (infoDocu.tareas);
     }
   }
 

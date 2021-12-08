@@ -43,11 +43,18 @@ export const ButtonOrange = styled.button`
   background-color: white;
   border: 2px solid #fba83c;
   height: 60px;
-  width: 280px;
+  width: 260px;
   font-size: 15px;
   font-weight: 600;
   border-radius: 15px;
   color: #fba83c;
+  z-index: 2;
+
+
+  &&:hover {
+    color: white;
+    background-color: #fba83c;
+  }
 `;
 
 export const SuccessInfo = styled.h4`
@@ -92,6 +99,7 @@ export const MenuListItem = styled.li`
 `;
 
 export const ContainerHome = styled.div`
+  position: relative;
   margin: 0 auto;
   max-width: 425px;
   max-height: 900px;
@@ -129,7 +137,7 @@ export const CardWelcomeQuestion = styled.p`
 `;
 
 export const CardContainer = styled.div`
-  padding: 25px;
+  padding: 25px ;
   margin: 0 auto;
   height: 95%;
   width: 280px;
@@ -163,7 +171,7 @@ export const CardQuote = styled.p`
 `;
 
 export const CardsContainer = styled.div`
-  padding: 25px;
+  padding: 0px 25px;
   margin: 0 auto;
   width: auto;
   height: 70vh;
@@ -200,4 +208,159 @@ export const CardsContainer = styled.div`
   &&::-webkit-scrollbar-thumb:active {
     background: rgba(240, 240, 240, 0.5);
   }
+`;
+
+export const ProfileContainer = styled.div`
+  margin: 0 auto;
+  max-width: 425px;
+  max-height: 900px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+`;
+
+export const ButtonBlack = styled.button`
+  background-color: black;
+  border: 1px solid black;
+  height: 35px;
+  width: 140px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 12px;
+`;
+
+export const ContainerProfile = styled.div`
+  margin: 0 auto;
+  max-width: 425px;
+  max-height: 900px;
+  overflow-y: scroll;
+  height: 88vh;
+  width: 100vw;
+  background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+`;
+
+export const ButtonProfileContainer = styled.div`
+  display: flex;
+`;
+
+export const CardImage = styled.img`
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/checklist-cover_erbtmk.png");
+  width: 100%;
+  object-fit: cover;
+  height: 95%;
+  border-radius: 10px;
+  z-index: 1;
+`;
+
+export const ButtonOrangeCards = styled.button`
+  color: white;
+  background-color: #fba83c;
+  border: 2px solid #fba83c;
+  height: 60px;
+  width: 250px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 15px;
+
+  z-index: 2;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &&:hover {
+    color: #fba83c;
+    background-color: white;
+  }
+`;
+
+export const CardListContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/checklist-cover_erbtmk.png");
+`;
+
+export const CardCoverListContainer = styled.div`
+  width: 280px;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  `;
+
+
+export const ContainerSections = styled.div`
+  position: relative;
+  margin: 0 auto;
+  max-width: 425px;
+  max-height: 900px;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+export const HeaderSections = styled.div`
+  position: absolute;
+  top: 0%;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+`;
+
+export const ButtonBack = styled.button`
+  width: 50px;
+  height: 50px;
+  background: #e5e6e7;
+  border-radius: 15px;
+  border: none;
+  margin: 0 15px;
+`;
+
+export const HeaderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HeaderWelcomeText = styled.h4`
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  color: #0a8791;
+`;
+export const HeaderWelcomeQuestion = styled.p`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.04em;
+  color: #0A8791;
 `;

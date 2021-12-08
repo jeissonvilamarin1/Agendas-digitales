@@ -4,12 +4,12 @@ import { GoogleAuthProvider, FacebookAuthProvider } from "@firebase/auth";// TOD
 import { getFirestore} from '@firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCul7b04VRUszcnCowgJ7nfU-ay-Vcqbo0",
-  authDomain: "agendadigital-f0067.firebaseapp.com",
-  projectId: "agendadigital-f0067",
-  storageBucket: "agendadigital-f0067.appspot.com",
-  messagingSenderId: "342316041569",
-  appId: "1:342316041569:web:f2be3cf71ef9d23728f120"
+  apiKey: "AIzaSyD4igC_ma5ZNIH8OHgdcWnTD65FOswwa40",
+  authDomain: "agendas-digitales-4794d.firebaseapp.com",
+  projectId: "agendas-digitales-4794d",
+  storageBucket: "agendas-digitales-4794d.appspot.com",
+  messagingSenderId: "228322766055",
+  appId: "1:228322766055:web:c84235016cc65506d30642",
 };
 
 // Initialize Firebase

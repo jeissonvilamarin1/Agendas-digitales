@@ -3,12 +3,13 @@ import { google, facebook } from "../firebase/firebase"
 import { types } from "../types/types"
 
 
-export const login = (id, displayname) => {
+export const login = (id, displayname, email) => {
     return {
         type: types.login,
         payload: {
             id,
-            displayname
+            displayname, 
+            email
         }
     }
 }
@@ -19,7 +20,7 @@ export const loginGoogle = () => {
         signInWithPopup(auth, google)
             .then(({ user }) => {
                 console.log(user);
-                dispatch(login(user.uid, user.displayName));
+                dispatch(login(user.uid, user.displayName, user.email));
 
             })
             .catch(e => {

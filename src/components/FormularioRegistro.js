@@ -8,7 +8,6 @@ export const FormularioRegistro = () => {
       const [formularioEnviado, setFormularioEnviado] = useState(false)
       const dispatch = useDispatch()
 
-
       return (
         <>
           <Formik

@@ -4,11 +4,11 @@ import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
 import { Container } from "react-bootstrap";
 import AgregarTarea from "../components/AgregarTareas";
 
-
-
 const firestore = getFirestore();
 
-const Tareas = () => {
+export const Tareas = () => {
+const [newName, setNewName] = useState("");
+const [newTodo, setNewTodo] = useState('');
 
   const state = useSelector((store) => store)
   console.log(state)
@@ -62,6 +62,5 @@ const Tareas = () => {
       ) : null}
     </Container>
   );
-};
+}
 
-export default Tareas;

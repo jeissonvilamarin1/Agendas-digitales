@@ -1,69 +1,66 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getAuth } from "@firebase/auth";
+import React, { useState, useEffect} from "react";
+import {useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
 import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
 import { Container, Button } from "react-bootstrap";
 import AgregarTarea from "../components/AgregarTareas";
 import Listartareas from "../components/Listartareas";
 import { AuthContext } from '../components/authContext'
+
+
 const firestore = getFirestore();
 
 const Tareas = () => {
 
+  const state = useSelector((store) => store)
+  console.log(state)
+  const id= state.login.id
 
-  const user = useContext(AuthContext)
-  const correoUsuario= user.email
-  console.log(correoUsuario)
- 
   const [arrayTareas, setArrayTareas] = useState(null);
-  const fakeData = [{
-    tareas:"prueba"
-  }];
+  const fakeData = [];
 
   async function buscarDocumentOrCrearDocumento(idDocumento) {
       console.log(idDocumento)
-    //crear referencia al documento
     const docuRef = doc(firestore, `usuarios/${idDocumento}`);
-    // buscar documento
     const consulta = await getDoc(docuRef);
-    // revisar si existe
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      return infoDocu.tareas;
+      console.log(infoDocu)
+      console.log(infoDocu.mensaje)
+      return setArrayTareas(infoDocu.tareas);
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: [...fakeData] });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
-      return infoDocu.tareas;
+      console.log(infoDocu)
+      return setArrayTareas(infoDocu.tareas);
     }
   }
 
   useEffect(() => {
     async function fetchTareas() {
       const tareasFetchadas = await buscarDocumentOrCrearDocumento(
-        correoUsuario
+        id
       );
+      console.log(tareasFetchadas)
       setArrayTareas(tareasFetchadas);
     }
 
     fetchTareas();
   }, []);
-
+  console.log(arrayTareas)
+  console.log({id})
   return (
     <Container>
     
       <AgregarTarea
-        arrayTareas={arrayTareas}
-        setArrayTareas={setArrayTareas}
-        correoUsuario={correoUsuario}
+         id={id} arrayTareas={arrayTareas} setArrayTareas={setArrayTareas}
       />
+   
       {arrayTareas ? (
-        <Listartareas
-          arrayTareas={arrayTareas}
-          setArrayTareas={setArrayTareas}
-          correoUsuario={correoUsuario}
-        />
+       "ok"
       ) : null}
     </Container>
   );

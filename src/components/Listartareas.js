@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Container, Row, Col, Button } from "react-bootstrap";
 import {app} from "../firebase/firebase";
-import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import { getFirestore, addDoc, doc } from "firebase/firestore";
 const firestore = getFirestore(app);
 
 const Listartareas = ({ arrayTareas, correoUsuario, setArrayTareas }) => {
@@ -12,7 +12,7 @@ const Listartareas = ({ arrayTareas, correoUsuario, setArrayTareas }) => {
     );
     // actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
-    updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
+    addDoc(docuRef, { tareas: [...nvoArrayTareas] });
     //actualizar state
     setArrayTareas(nvoArrayTareas);
   }

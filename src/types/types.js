@@ -4,3 +4,8 @@ export const types = {
     register: 'register',
     actualiza: 'acatualizado'
 }
+export const typeTareas={
+   register:'register',
+   list:'list',
+   delete:'delete'
+}

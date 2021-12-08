@@ -14,7 +14,7 @@ import { Registro } from '../containers/Registro';
 
 const AppRouter = () => {
 
-  const [logginok, setlogginok] = useState({})
+  const [logginok, setlogginok] = useState(false)
  
   const dispatch = useDispatch()
   

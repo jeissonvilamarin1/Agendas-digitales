@@ -1,72 +1,85 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getAuth } from "@firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
-import { Container, Button } from "react-bootstrap";
-import AgregarTarea from "../components/AgregarTareas";
-import Listartareas from "../components/Listartareas";
-import { AuthContext } from '../components/authContext'
-const firestore = getFirestore();
+import { useState, useEffect } from "react";
+import { db } from "../firebase/firebase";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 
-const Tareas = () => {
+export const Tareas = () => {
+const [newName, setNewName] = useState("");
+const [newTodo, setNewTodo] = useState('');
 
+const [users, setUsers] = useState([]);
+const usersCollectionRef = collection(db, "users");
 
-  const user = useContext(AuthContext)
-  const correoUsuario= user.email
-  console.log(correoUsuario)
- 
-  const [arrayTareas, setArrayTareas] = useState(null);
-  const fakeData = [{
-    tareas:"prueba"
-  }];
-
-  async function buscarDocumentOrCrearDocumento(idDocumento) {
-      console.log(idDocumento)
-    //crear referencia al documento
-    const docuRef = doc(firestore, `usuarios/${idDocumento}`);
-    // buscar documento
-    const consulta = await getDoc(docuRef);
-    // revisar si existe
-    if (consulta.exists()) {
-      // si sí existe
-      const infoDocu = consulta.data();
-      return infoDocu.tareas;
-    } else {
-      // si no existe
-      await setDoc(docuRef, { tareas: [...fakeData] });
-      const consulta = await getDoc(docuRef);
-      const infoDocu = consulta.data();
-      return infoDocu.tareas;
-    }
-  }
-
-  useEffect(() => {
-    async function fetchTareas() {
-      const tareasFetchadas = await buscarDocumentOrCrearDocumento(
-        correoUsuario
-      );
-      setArrayTareas(tareasFetchadas);
-    }
-
-    fetchTareas();
-  }, []);
-
-  return (
-    <Container>
-    
-      <AgregarTarea
-        arrayTareas={arrayTareas}
-        setArrayTareas={setArrayTareas}
-        correoUsuario={correoUsuario}
-      />
-      {arrayTareas ? (
-        <Listartareas
-          arrayTareas={arrayTareas}
-          setArrayTareas={setArrayTareas}
-          correoUsuario={correoUsuario}
-        />
-      ) : null}
-    </Container>
-  );
+const createUser = async () => {
+  await addDoc(usersCollectionRef, { name: newName, todo: newTodo });
 };
 
-export default Tareas;
+const updateUser = async (id, age) => {
+
+  const userDoc = doc(db, "users", id);
+  const newFields = { todo: newTodo};
+  await updateDoc(userDoc, newFields);
+};
+
+const deleteUser = async (id) => {
+  const userDoc = doc(db, "users", id);
+  await deleteDoc(userDoc);
+};
+
+useEffect(() => {
+  const getUsers = async () => {
+    const data = await getDocs(usersCollectionRef);
+    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  console.log(getUsers());
+  getUsers();
+}, []);
+
+  return (
+    <div className="App">
+      <input
+        placeholder="Name..."
+        onChange={(event) => {
+          setNewName(event.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="Todo..."
+        onChange={(event) => {
+          setNewTodo(event.target.value);
+        }}
+      />
+
+      <button onClick={createUser}> Create User</button>
+      {users.map((user) => {
+        console.log(user)
+        return (
+          <div>
+            {" "}
+            <h1>Name: {user.name}</h1>
+            <h1>Todo: {user.todo}</h1>
+            <button
+              onClick={() => {
+                console.log(user.id)
+                updateUser(user.id, user.age);
+              }}
+            >
+              {" "}
+              Update Todo
+            </button>
+            <button
+              onClick={() => {
+                deleteUser(user.id);
+              }}
+            >
+              {" "}
+              Delete User
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+

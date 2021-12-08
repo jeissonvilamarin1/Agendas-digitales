@@ -20,9 +20,11 @@ const AppRouter = () => {
   
   useEffect(() => {
     const auth = getAuth();
+    console.log(auth)
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
-        dispatch(login(user.uid, user.displayName))
+        dispatch(login(user.uid, user.displayName, user.email))
+        
         setlogginok(user);
 
       } else {

@@ -26,35 +26,38 @@ export const Card = () => {
 
   return (
     <>
-      <CardContainer>
-        <CardQuote>
-          Escoge la imágen que más te guste para que te acompañe e inspire en tu
-          dia a dia
-        </CardQuote>
-
         {!image ? (
-          <CardCoverContainer>
-            <input
-              type="file"
-              onChange={(e) => {
-                setImageSelected(e.target.files[0]);
-              }}
-              required
-            />
-            <button type="button" onClick={fileUpload}>
-              Cargar imagen
-            </button>
-          </CardCoverContainer>
+      <CardContainer>
+          <>
+            <CardQuote>
+              Escoge la imágen que más te guste para que te acompañe e inspire
+              en tu dia a dia
+            </CardQuote>
+            <CardCoverContainer>
+              <input
+                type="file"
+                onChange={(e) => {
+                  setImageSelected(e.target.files[0]);
+                }}
+                required
+              />
+              <button type="button" onClick={fileUpload}>
+                Cargar imagen
+              </button>
+            </CardCoverContainer>
+          </>
+          </CardContainer>
         ) : (
-          <CardCoverContainer>
+          <CardContainer>
             <Image
               cloudName="dtp6uf9vc"
               publicId={`${image}`}
               style={{ width: "225px", height: "100%", opacity: "0.9" }}
             />
-          </CardCoverContainer>
+      
+          </CardContainer>
         )}
-      </CardContainer>
+      
     </>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Form, Col, Row, Button } from "react-bootstrap";
+import { Form, Col, Row, Button } from "react-bootstrap";
 import { registerTasks } from "../actions/tasksAction";
 import { useDispatch } from "react-redux";
+import { ButtonBlue } from "../styles/styles";
 
 const AgregarTarea = ({ id, arrayTareas }) => {
   console.log(id);
@@ -14,16 +15,13 @@ const AgregarTarea = ({ id, arrayTareas }) => {
   };
 
   return (
-    <Container>
       <Form onSubmit={hanleRegistro}>
-        <Row className="mb-5">
+        <Row >
           <Col>
-            <Button type="submit"> AgregarTarea</Button>
+            <ButtonBlue type="submit"> Guardar Checklist</ButtonBlue>
           </Col>
         </Row>
       </Form>
-      <hr />
-    </Container>
   );
 };
 

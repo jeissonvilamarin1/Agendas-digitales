@@ -11,6 +11,7 @@ import { Card } from '../components/Card';
 import { useSelector } from "react-redux";
 import { store } from '../store/store';
 import { CardChecklist } from '../components/CardChecklist';
+import { CardMetas } from '../components/CardMetas';
 
 export const Home = () => {
    const state = useSelector(store => store)
@@ -26,6 +27,7 @@ export const Home = () => {
           <CardsContainer>
             <Card />
             <CardChecklist />
+            <CardMetas />
           </CardsContainer>
           <Navbar />
         </ContainerHome>

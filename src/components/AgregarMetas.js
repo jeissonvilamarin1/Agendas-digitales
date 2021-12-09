@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
-import { Container, Form, Col, Row, Button } from "react-bootstrap";
+import { Container, Form, Col, Row } from "react-bootstrap";
 import { registerMetas } from "../actions/tasksAction";
 import { useDispatch } from 'react-redux';
+import { ButtonBlue } from "../styles/styles";
 
 
 const AgregarMetas= ({id, arrayMetas}) => {
@@ -14,18 +15,16 @@ const hanleRegistro= e =>{
 }
 
 return (
-    <Container>
-      <Form onSubmit={hanleRegistro}>
-        <Row className="mb-5">
-         
-          <Col>
-            <Button type="submit"> AgregarMeta</Button>
-          </Col>
-        </Row>
-      </Form>
-      <hr />
-    </Container>
-  );
+  <Container>
+    <Form onSubmit={hanleRegistro}>
+      <Row className="mb-3 d-flex justify-content-center">
+        <Col className="d-flex justify-content-center">
+          <ButtonBlue type="submit"> AgregarMeta</ButtonBlue>
+        </Col>
+      </Row>
+    </Form>
+  </Container>
+);
 };
 
 export default AgregarMetas;

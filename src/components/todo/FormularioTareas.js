@@ -34,8 +34,7 @@ export const FormularioTareas = ({tareas, setTareas}) => {
             type="submit"
             className="formulario-tareas__btn"
             >
-                <FontAwesomeIcon icon={faPlusSquare} className="formulario-tareas__icono-btn"
-                />
+                +
             </button>
         </form>
     )

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
 import { v4 } from "uuid";
 import AgregarMetas from "../components/AgregarMetas";
+import { ButtonBack, ContainerSectionHero, ContainerSections, HeaderInfo, HeaderSections, HeaderWelcomeQuestion, HeaderWelcomeText } from "../styles/styles";
+import { Link } from "react-router-dom";
 
 const firestore = getFirestore();
 
@@ -80,26 +84,38 @@ export const Metas = () => {
 
   return (
     <>
-      <div className="contenedor">
-        <form className="formulario-tareas" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            className="formulario-tareas__input"
-            placeholder="Escribe una meta"
-            value={inputMetas}
-            onChange={(e) => handleInput(e)}
+      <ContainerSections>
+        <HeaderSections>
+          <Link to="/home">
+            <ButtonBack>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </ButtonBack>
+          </Link>
+          <HeaderInfo>
+            <HeaderWelcomeText>Metas</HeaderWelcomeText>
+            <HeaderWelcomeQuestion>Que no se te olvide ninguna</HeaderWelcomeQuestion>
+          </HeaderInfo>
+        </HeaderSections>
+        <ContainerSectionHero>
+            <form className="formulario-tareas" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                className="formulario-tareas__input"
+                placeholder="Escribe una meta"
+                value={inputMetas}
+                onChange={(e) => handleInput(e)}
+              />
+              <button type="submit" className="formulario-tareas__btn">
+                +
+              </button>
+            </form>
+          <AgregarMetas
+            id={id}
+            arrayMetas={arrayMetas}
+            arrayTareas={JSON.parse(localStorage.getItem("tareas"))}
           />
-          <button type="submit" className="formulario-tareas__btn">
-                Enviar Meta
-          </button>
-        </form>
-      </div>
-
-      <AgregarMetas
-        id={id}
-        arrayMetas={arrayMetas}
-        arrayTareas={JSON.parse(localStorage.getItem("tareas"))}
-      />
+        </ContainerSectionHero>
+      </ContainerSections>
     </>
   );
 };

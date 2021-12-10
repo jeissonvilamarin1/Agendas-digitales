@@ -364,3 +364,31 @@ export const HeaderWelcomeQuestion = styled.p`
   letter-spacing: 0.04em;
   color: #0A8791;
 `;
+
+export const ContainerSectionHero = styled.div`
+  position: relative;
+  margin-top: 120px;
+  max-width: 425px;
+  max-height: 900px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CardMetasContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/metas-anuales_qctb2j.png");
+`;

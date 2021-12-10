@@ -19,6 +19,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import { TodoApp } from "../components/todo/Todo";
 
 
 export const CheckList = () => {
@@ -59,27 +60,7 @@ export const CheckList = () => {
             <HeaderWelcomeQuestion>Tu puedes hacerlo</HeaderWelcomeQuestion>
           </HeaderInfo>
         </HeaderSections>
-        <form onSubmit={createTodo}>
-          <input
-            type="text"
-            placeholder="Escribe una tarea..."
-            className="checklist-input"
-            value={tarea}
-            required
-            onChange={handleChange}
-          />
-          <button className="button-add" type="submit">
-            Add
-          </button>
-        </form>
-        {users.map((user) => {
-          return (
-            <div>
-              {" "}
-              <h1>Todo: {user.tareas}</h1>
-            </div>
-          );
-        })}
+        <TodoApp/>
       </ContainerSections>
     </div>
   );

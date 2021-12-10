@@ -5,6 +5,7 @@ import { Calendario } from '../containers/Calendario';
 import { Perfil } from '../containers/Perfil';
 import { Tareas } from '../containers/Tareas';
 import { CheckList } from '../containers/CheckList';
+import { Metas } from '../containers/Metas';
 
 
 const RoutesApp = () => {
@@ -16,6 +17,7 @@ const RoutesApp = () => {
           <Route path="/perfil" element={<Perfil/>} />
           <Route path="/tareas" element={<Tareas/>} />
           <Route path="/checklist" element={<CheckList/>} />
+          <Route path="/metas" element={<Metas/>} />
         </Routes>
         </>
   );

@@ -5,6 +5,7 @@ import { ListaTareas } from "./ListaTareas";
 import { useSelector } from "react-redux";
 import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
 import AgregarTarea from "../AgregarTareas";
+import { ContainerSectionHero } from "../../styles/styles";
 
 const firestore = getFirestore();
 
@@ -42,28 +43,22 @@ export const TodoApp = () => {
   //-----------------------------------------------------------------------------
   
   const state = useSelector((store) => store);
-  console.log(state);
   const id = state.login.id;
 
   const [arrayTareas, setArrayTareas] = useState(null);
-  const fakeData = [];
 
   async function buscarDocumentOrCrearDocumento(idDocumento) {
-    console.log(idDocumento);
     const docuRef = doc(firestore, `usuarios/${idDocumento}`);
     const consulta = await getDoc(docuRef);
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(tareas);
-      console.log(infoDocu);
       return tareas;
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: tareas });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
-      console.log(infoDocu);
       return infoDocu.tareas;
     }
   }
@@ -78,29 +73,27 @@ export const TodoApp = () => {
     fetchTareas();
   }, [tareas]);
 
-  console.log(arrayTareas);
-  console.log({ id });
 
   return (
     <>
-      <div className="contenedor">
-        <Header
-          mostrarCompletadas={mostrarCompletadas}
-          setMostrarCompletadas={setMostrarCompletadas}
-        />
+      <ContainerSectionHero>
         <FormularioTareas tareas={tareas} setTareas={setTareas} />
         <ListaTareas
           tareas={tareas}
           setTareas={setTareas}
           mostrarCompletadas={mostrarCompletadas}
         />
-      </div>
+        <AgregarTarea
+          id={id}
+          arrayTareas={arrayTareas}
+          setArrayTareas={setArrayTareas}
+        />
+          <Header
+            mostrarCompletadas={mostrarCompletadas}
+            setMostrarCompletadas={setMostrarCompletadas}
+          />
+      </ContainerSectionHero>
 
-      <AgregarTarea
-        id={id}
-        arrayTareas={arrayTareas}
-        setArrayTareas={setArrayTareas}
-      />
     </>
   );
 };

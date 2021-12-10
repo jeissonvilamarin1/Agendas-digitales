@@ -1,6 +1,6 @@
 import { typeTareas, typeMetas } from "../types/types";
 import {db} from "../firebase/firebase";
-import { addDoc,collection, getDocs, doc, setDoc, updateDoc} from "@firebase/firestore";
+import { doc, setDoc, updateDoc} from "@firebase/firestore";
 
 //Lectura
 

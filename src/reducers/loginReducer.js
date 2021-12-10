@@ -7,6 +7,7 @@ export const loginReducer = (state = {}, action) => {
                 ...state,
                 id: action.payload.id,
                 name: action.payload.displayname,
+                imageUrl: action.payload.imageUrl,
                 email: action.payload.email
             }
             case types.logout:

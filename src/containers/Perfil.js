@@ -1,12 +1,11 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { startLogout } from "../actions/loginAction";
 import { FormularioPerfil } from "../components/FormularioPerfil";
 import { Navbar } from "../components/Navbar";
 import {
   ButtonBlue,
-  ButtonOrange,
   ProfileContainer,
   CardWelcomeContainer,
   CardWelcomeQuestion,
@@ -15,10 +14,43 @@ import {
   ButtonBlack,
   ContainerProfile,
 } from "../styles/styles";
+import { Modal } from "react-bootstrap";
+import { useCustomFormik } from "../hooks/useFormik";
+import UI from "../redux/actions/uiActions";
+const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 export const Perfil = () => {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.login);
+  const currentUser = useSelector((state) => state.user);
+  const [user, setUser] = useState(currentUser);
   
+  const [formik, values, handleInputChange, handleInputChangeFile] =
+  useCustomFormik("updateProfile", user);
+
+  const {
+    name,
+    imageUrl,
+  } = values;
+
+  const handleImageProfile = () => {
+    document.getElementById("imageProfile").click();
+  };
+
+  const handleCover = () => {
+    document.getElementById("imageCover").click();
+  };
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (loading) {
+          setUser(auth);
+          setLoading(false);
+    } else {
+      setUser(currentUser);
+    }
+  }, [loading, currentUser]);
+
   const handleLogout = () => {
     dispatch(startLogout());
   };
@@ -33,6 +65,15 @@ export const Perfil = () => {
           </CardWelcomeQuestion>
         </CardWelcomeContainer>
         <ProfileContainer>
+        <Img
+                  className="cover"
+                  src={user?.coverUrl || cover}
+                  alt="cover"
+                  width="100%"
+                  height="50px"
+                  radius="5px 5px 0px 0px"
+                  margin="0"
+                />
           <ButtonProfileContainer>
             <ButtonBlack
               variant="btn btn-info"
@@ -51,6 +92,14 @@ export const Perfil = () => {
           </ButtonProfileContainer>
 
           <FormularioPerfil />
+          
+          <ButtonBlue
+            variant="btn btn-info"
+            type="submit"
+            onClick={handleLogout}
+          >
+            Modificar Usuario
+          </ButtonBlue>
           <ButtonBlue
             variant="btn btn-info"
             type="submit"
@@ -58,11 +107,8 @@ export const Perfil = () => {
           >
             Salir
           </ButtonBlue>
-          <Link to="/tareas">
-            <ButtonOrange variant="btn btn-info" type="submit">
-              Tareas
-            </ButtonOrange>
-          </Link>
+        
+            
         </ProfileContainer>
         <Navbar />
       </ContainerProfile>

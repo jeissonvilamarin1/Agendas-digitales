@@ -11,12 +11,14 @@ const firestore = getFirestore();
 
 export const TodoApp = () => {
   // Obtenermos las tareas guardadas de local storage
+
   const tareasGuardadas = localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
     : [];
 
   // Establecemos el estado de las tareas.
   const [tareas, setTareas] = useState(tareasGuardadas);
+  
 
   //Guardando el estado dentro de local storage
   useEffect(() => {
@@ -53,7 +55,8 @@ export const TodoApp = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      return tareas;
+    
+      return infoDocu.tareas;
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: tareas });
@@ -67,11 +70,12 @@ export const TodoApp = () => {
     async function fetchTareas() {
       const tareasFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(tareasFetchadas);
-      setArrayTareas(tareasFetchadas);
+      localStorage.setItem("tareas", JSON.stringify(tareasFetchadas) )
+      setTareas(tareasFetchadas);
     }
 
     fetchTareas();
-  }, [tareas]);
+  }, []);
 
 
   return (
@@ -85,8 +89,8 @@ export const TodoApp = () => {
         />
         <AgregarTarea
           id={id}
-          arrayTareas={arrayTareas}
-          setArrayTareas={setArrayTareas}
+          arrayTareas={tareas}
+     
         />
           <Header
             mostrarCompletadas={mostrarCompletadas}

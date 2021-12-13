@@ -22,14 +22,14 @@ const useCustomFormik = (type, user) => {
   formik.handleSubmit = () => {
     switch (type) {
       case "updateProfile":
-        const formValues = buildUserDto({
+        const formValues = {
           email: user.email,
           password: user.password,
           Profiles:{
             name: user.name,
-            imageUrl: data.imageUrl,
+            imageUrl: user.imageUrl,
           }
-        });
+        };
         dispatch(updateProfileUser(user.id, formValues));
         //dispatch(UI.hideModal());
         break;

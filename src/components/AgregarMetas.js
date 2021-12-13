@@ -11,7 +11,7 @@ const dispatch = useDispatch();
 
 const hanleRegistro= e =>{
   e.preventDefault();
-  dispatch(registerMetas(arrayMetas, id));
+  dispatch(registerMetas(id, arrayMetas));
 }
 
 return (

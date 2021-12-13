@@ -13,10 +13,10 @@ import {
   ButtonProfileContainer,
   ButtonBlack,
   ContainerProfile,
+  
 } from "../styles/styles";
 import { Modal } from "react-bootstrap";
 import { useCustomFormik } from "../hooks/useFormik";
-import UI from "../redux/actions/uiActions";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 export const Perfil = () => {
@@ -65,7 +65,7 @@ export const Perfil = () => {
           </CardWelcomeQuestion>
         </CardWelcomeContainer>
         <ProfileContainer>
-        <Img
+        <img
                   className="cover"
                   src={user?.coverUrl || cover}
                   alt="cover"

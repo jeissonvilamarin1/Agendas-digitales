@@ -1,8 +1,7 @@
 import { types } from "../types/types";
-import { getProfile, updateProfile } from "../../services/user";
 import { doc, setDoc, updateDoc} from "@firebase/firestore";
 import Swal from "sweetalert2";
-
+import {db} from "../firebase/firebase";
 
 const updateProfileUser = (id, data) => {
   return (dispatch) => {
@@ -34,4 +33,4 @@ const updateProfileUser = (id, data) => {
   };
 };
 
-export default updateProfileUse;
+export default updateProfileUser;

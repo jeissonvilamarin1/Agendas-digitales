@@ -67,5 +67,7 @@ export const startLogout = () => {
       const auth = getAuth();
       await signOut(auth);
       dispatch(logout() )
+      localStorage.setItem('tareas', '')
+      localStorage.setItem('metas', '')
     };
   };

@@ -10,11 +10,11 @@ import { ContainerSectionHero } from "../../styles/styles";
 const firestore = getFirestore();
 
 export const TodoApp = () => {
+  const state = useSelector((store) => store);
+  const id = state.login.id;
   // Obtenermos las tareas guardadas de local storage
-  const tareasGuardadas = localStorage.getItem("tareas")
-    ? JSON.parse(localStorage.getItem("tareas"))
-    : [];
-
+  const tareasGuardadas = async(id) => await buscarDocumentOrCrearDocumento(id);
+  console.log(tareasGuardadas)
   // Establecemos el estado de las tareas.
   const [tareas, setTareas] = useState(tareasGuardadas);
 
@@ -42,18 +42,17 @@ export const TodoApp = () => {
   
   //-----------------------------------------------------------------------------
   
-  const state = useSelector((store) => store);
-  const id = state.login.id;
+  
 
   const [arrayTareas, setArrayTareas] = useState(null);
-
+  
   async function buscarDocumentOrCrearDocumento(idDocumento) {
     const docuRef = doc(firestore, `usuarios/${idDocumento}`);
     const consulta = await getDoc(docuRef);
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      return tareas;
+      return infoDocu.tareas;
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: tareas });

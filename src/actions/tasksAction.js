@@ -30,10 +30,10 @@ export const registerTasksincronico=(tarea)=>{
 export const registerMetas = (arrayMetas, id) => {
     return (dispatch)=>{
       const newarray=
-            [...arrayMetas];
+            [ ...arrayMetas];
        
         const docuRef = doc(db,  "usuarios", `${id}`);
-        setDoc(docuRef,  {metas: [...newarray]})
+        updateDoc(docuRef,  {metas: [...newarray]})
         
         .then(resp=>{
            dispatch(registerMetasincronico(newarray))

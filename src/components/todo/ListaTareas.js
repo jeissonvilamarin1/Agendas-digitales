@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Tarea } from './Tarea'
 
 export const ListaTareas = ({tareas, setTareas, mostrarCompletadas}) => {

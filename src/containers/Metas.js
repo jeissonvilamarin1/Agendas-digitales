@@ -112,7 +112,7 @@ export const Metas = () => {
           <AgregarMetas
             id={id}
             arrayMetas={arrayMetas}
-            arrayTareas={JSON.parse(localStorage.getItem("tareas"))}
+        
           />
         </ContainerSectionHero>
       </ContainerSections>

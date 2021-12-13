@@ -1,6 +1,9 @@
 import { typeTareas, typeMetas } from "../types/types";
 import {db} from "../firebase/firebase";
-import { doc, setDoc, updateDoc } from "@firebase/firestore";
+import { doc, setDoc, updateDoc} from "@firebase/firestore";
+
+//Lectura
+
 
 export const registerTasks = (arrayTareas, id) => {
 
@@ -27,7 +30,7 @@ export const registerTasksincronico=(tarea)=>{
 
 }
 
-export const registerMetas = (arrayMetas, id) => {
+export const registerMetas = (id, arrayMetas) => {
     return (dispatch)=>{
       const newarray=
             [ ...arrayMetas];

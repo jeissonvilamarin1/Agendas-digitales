@@ -54,7 +54,7 @@ const [newTodo, setNewTodo] = useState('');
     <Container>
     
       <AgregarTarea
-         id={id} arrayTareas={arrayTareas} setArrayTareas={setArrayTareas}
+         id={id} arrayTareas={arrayTareas} 
       />
    
       {arrayTareas ? (

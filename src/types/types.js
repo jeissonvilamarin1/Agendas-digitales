@@ -1,21 +1,21 @@
 export const types = {
     login: '[Auth] Login',
     logout: '[Auth] Logout',
-    getProfile : "[GET] Profile",
+    getProfile : '[GET] Profile',
 }
-export const typeTareas={
-   register:'register',
-   list:'list',
-   delete:'delete'
-}
+export const typeTareas = {
+  register: '[Tareas] register',
+  list: '[Tareas] list',
+  delete: '[Tareas] delete',
+};
 
-export const typeMetas={
-    register:'register',
-    list:'list',
-    delete:'delete'
- }
+export const typeMetas = {
+  register: '[Metas] register',
+  list: '[Metas] list',
+  delete: '[Metas] delete',
+};
 
- export const typeCalendario={
-    register:'register',
-    list:'list'
- }
+ export const typeCalendario = {
+   register: '[Calendario] register',
+   list: '[Calendario] list',
+ };

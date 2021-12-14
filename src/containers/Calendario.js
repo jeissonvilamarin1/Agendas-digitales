@@ -40,6 +40,7 @@ export const Calendario = () => {
     start: "",
     end: "",
   });
+  
   const [allEvents, setAllEvents] = useState(events);
   console.log(allEvents)
 

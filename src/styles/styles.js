@@ -392,3 +392,95 @@ export const CardMetasContainer = styled.div`
   margin-right: 20px;
   background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/metas-anuales_qctb2j.png");
 `;
+
+export const ContainerCalendar = styled.div`
+  margin: 0 auto;
+  max-width: 425px;
+  max-height: 900px;
+  overflow-y: scroll;
+  height: 88vh;
+  width: 100vw;
+  background-image: url(https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638370993/Agendas%20Digitales/fondo-home_qkmvah.png);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+`;
+
+export const EventContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+`
+
+export const CardAgendaContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/agenda-cover_foqazi.png");
+`;
+
+export const CardHorariosContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/horarios-cover_p8nhbb.png");
+`;
+
+export const CardCalificacionesContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/calificaciones-cover_lzkxqr.png");
+`;
+
+export const CardContrasenasContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/contrase%C3%B1as-cover_ip7coi.png");
+`;
+
+export const CardViajesContainer = styled.div`
+  position: relative;
+  height: 95%;
+  width: 480px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/viajes-cover_bkzcqz.png");
+`;

@@ -217,3 +217,63 @@
 	font-family: 'Roboto', sans-serif;
 	border-radius: 3px;
 }
+
+.calendario{
+	color: #0a8791;
+	min-height: 500px;
+	height: 500px;
+	margin: 10px; 
+}
+
+.calendario span{
+	color: #fba83c;
+}
+
+.calendario button{
+	background-color: #fba83c;
+}
+.rbc-toolbar button:active:focus{
+	background-color: #0a8791;
+}
+.rbc-toolbar{
+	margin: 0 auto;
+	flex-direction: column;
+	margin-bottom: 10px;
+	height: auto;
+}
+
+.rbc-toolbar-label{
+	font-weight: 700;
+	color: #0a8791;
+	text-transform: capitalize;
+	margin: 10px 0;
+}
+
+.rbc-toolbar-label span:active{
+	color: #0a8791;
+}
+
+.react-datepicker__input-container{
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin-bottom: 5px;
+	
+}
+
+.react-datepicker__input-container input{
+	border-radius: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+}
+
+.input-calendar{
+	width: 80%;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+}
+.react-datepicker-wrapper{
+	margin: 0 auto;
+}

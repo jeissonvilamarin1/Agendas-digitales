@@ -9,9 +9,14 @@ import {
 } from "../styles/styles";
 import { Card } from '../components/Card';
 import { useSelector } from "react-redux";
-import { store } from '../store/store';
 import { CardChecklist } from '../components/CardChecklist';
 import { CardMetas } from '../components/CardMetas';
+import { CardAgenda } from '../components/CardAgenda';
+import { CardHorarios } from '../components/CardHorarios';
+import { CardCalificaciones } from '../components/CardCalificaciones';
+import { CardContrasenas } from '../components/CardContrasenas';
+import { CardViajes } from '../components/CardViajes';
+
 
 export const Home = () => {
    const state = useSelector(store => store)
@@ -27,7 +32,12 @@ export const Home = () => {
           <CardsContainer>
             <Card />
             <CardChecklist />
+            <CardAgenda />
+            <CardHorarios />
+            <CardCalificaciones />
             <CardMetas />
+            <CardContrasenas />
+            <CardViajes />
           </CardsContainer>
           <Navbar />
         </ContainerHome>

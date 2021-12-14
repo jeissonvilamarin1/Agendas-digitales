@@ -13,16 +13,11 @@ export const TodoApp = () => {
   const state = useSelector((store) => store);
   const id = state.login.id;
   // Obtenermos las tareas guardadas de local storage
-<<<<<<< HEAD
-  const tareasGuardadas = async(id) => await buscarDocumentOrCrearDocumento(id);
-  console.log(tareasGuardadas)
-=======
 
   const tareasGuardadas = localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
     : [];
 
->>>>>>> 34605ac196679b71c519beb8a1c71c15d26d5bbb
   // Establecemos el estado de las tareas.
   const [tareas, setTareas] = useState(tareasGuardadas);
   
@@ -61,10 +56,7 @@ export const TodoApp = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-<<<<<<< HEAD
-=======
     
->>>>>>> 34605ac196679b71c519beb8a1c71c15d26d5bbb
       return infoDocu.tareas;
     } else {
       // si no existe

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Container, Form, Col, Row } from "react-bootstrap";
 import { registerMetas } from "../actions/tasksAction";
 import { useDispatch } from 'react-redux';

@@ -1,5 +1,5 @@
 import { types } from "../types/types";
-import { doc, setDoc, updateDoc} from "@firebase/firestore";
+import { doc, updateDoc} from "@firebase/firestore";
 import Swal from "sweetalert2";
 import {db} from "../firebase/firebase";
 

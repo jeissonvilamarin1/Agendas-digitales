@@ -6,8 +6,9 @@ import updateProfileUser from "../actions/userActions";
 //import UI from "../redux/actions/uiActions";
 
 const useCustomFormik = (type, user) => {
+  
   const dispatch = useDispatch();
-
+   console.log(user)
   const formik = useFormik({
     initialValues: {},
   });
@@ -27,7 +28,7 @@ const useCustomFormik = (type, user) => {
           password: user.password,
           Profiles:{
             name: user.name,
-            imageUrl: user.imageUrl,
+            photoURL: user.photoURL,
           }
         };
         dispatch(updateProfileUser(user.id, formValues));

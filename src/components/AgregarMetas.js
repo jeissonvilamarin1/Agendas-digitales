@@ -19,7 +19,7 @@ return (
     <Form onSubmit={hanleRegistro}>
       <Row className="mb-3 d-flex justify-content-center">
         <Col className="d-flex justify-content-center">
-          <ButtonBlue type="submit"> AgregarMeta</ButtonBlue>
+          <ButtonBlue type="submit"> Agregar Metas</ButtonBlue>
         </Col>
       </Row>
     </Form>

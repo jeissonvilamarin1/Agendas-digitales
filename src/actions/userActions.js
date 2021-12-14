@@ -3,7 +3,9 @@ import { doc, setDoc, updateDoc} from "@firebase/firestore";
 import Swal from "sweetalert2";
 import {db} from "../firebase/firebase";
 
+
 const updateProfileUser = (id, data) => {
+  console.log(data)
   return (dispatch) => {
     try {
       const docuRef = doc(db,  "perfil", `${id}`);

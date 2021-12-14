@@ -16,7 +16,7 @@ import {
 } from "../styles/styles";
 import { Modal } from "react-bootstrap";
 import { useCustomFormik } from "../hooks/useFormik";
-const cover = "https://fondosmil.com/fondo/9856.jpg";
+
 
 export const Perfil = () => {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ export const Perfil = () => {
   const {
     name,
     imageUrl,
+    email
   } = values;
 
   const handleImageProfile = () => {
@@ -64,15 +65,6 @@ export const Perfil = () => {
           </CardWelcomeQuestion>
         </CardWelcomeContainer>
         <ProfileContainer>
-        <img
-                  className="cover"
-                  src={user?.coverUrl || cover}
-                  alt="cover"
-                  width="100%"
-                  height="50px"
-                  radius="5px 5px 0px 0px"
-                  margin="0"
-                />
           <ButtonProfileContainer>
             <ButtonBlack
               variant="btn btn-info"

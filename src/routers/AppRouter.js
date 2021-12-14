@@ -20,10 +20,13 @@ const AppRouter = () => {
   
   useEffect(() => {
     const auth = getAuth();
+
     console.log(auth)
+
     onAuthStateChanged(auth, async (user) => {
+
       if (user?.uid) {
-        dispatch(login(user.uid, user.displayName, user.email))
+        dispatch(login(user.uid, user.displayName, user.email, user.photoURL ))
         
         setlogginok(user);
 
@@ -39,7 +42,7 @@ const AppRouter = () => {
         <Routes>
         <Route path="/" element={<Portada/>} />
           <Route path="/bienvenida" element={<Bienvenida />} />
-          <Route path='*' element={
+          <Route path='/*' element={
             <PrivateRouter>
               <RoutesApp />
             </PrivateRouter>

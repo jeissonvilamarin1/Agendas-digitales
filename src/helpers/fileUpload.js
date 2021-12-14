@@ -3,7 +3,7 @@
 export const fileUpload = async(file) => {
       const url = "https://api.cloudinary.com/v1_1/dtp6uf9vc/upload";
       const formData = new FormData();
-      formData.append('upload_preset', 'agendas-digitales');
+      formData.append('upload_preset', 'agendasdigitales');
       formData.append('file', file);
 
       const resp = await fetch(url,

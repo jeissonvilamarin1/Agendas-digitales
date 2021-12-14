@@ -1,9 +1,8 @@
-import { typeTareas, typeMetas } from "../types/types";
+import { typeTareas, typeMetas, typeCalendario } from "../types/types";
 import {db} from "../firebase/firebase";
 import { doc, setDoc, updateDoc} from "@firebase/firestore";
 
-//Lectura
-
+//Tareas
 
 export const registerTasks = (arrayTareas, id) => {
 
@@ -30,6 +29,8 @@ export const registerTasksincronico=(tarea)=>{
 
 }
 
+//Metas
+
 export const registerMetas = (id, arrayMetas) => {
     return (dispatch)=>{
       const newarray=
@@ -54,3 +55,27 @@ export const registerMetasincronico=(Meta)=>{
     }
  
  }
+
+ //Calendario
+
+ export const registerCalendario = (id, arrayCalendario) => {
+   return (dispatch) => {
+     const newarray = [...arrayCalendario];
+
+     const docuRef = doc(db, "usuarios", `${id}`);
+     updateDoc(docuRef, { calendario: [...newarray] })
+       .then((resp) => {
+         dispatch(registerMetasincronico(newarray));
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+   };
+ };
+
+ export const registerCalendarioSincronico = (Calendario) => {
+   return {
+     type: typeCalendario.register,
+     payload: Calendario,
+   };
+ };

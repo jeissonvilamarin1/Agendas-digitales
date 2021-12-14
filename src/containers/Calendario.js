@@ -1,15 +1,15 @@
 // import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import React, { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import { ButtonBlack, EventContainer, CardWelcomeContainer, CardWelcomeQuestion, CardWelcomeText, ContainerCalendar } from "../styles/styles";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "moment/locale/es-mx";
 import { Navbar } from "../components/Navbar";
 import { es } from "date-fns/locale";
+import moment from "moment";
 import swal from "sweetalert2";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
+import "moment/locale/es-mx";
 
 
 const localizer = momentLocalizer(moment);
@@ -34,17 +34,22 @@ const events = [
 ];
 
 export const Calendario = () => {
+  
   const [newEvent, setNewEvent] = useState({
     title: "",
     start: "",
     end: "",
   });
   const [allEvents, setAllEvents] = useState(events);
+  console.log(allEvents)
 
   const handleAddEvent = () => {
     setAllEvents([...allEvents, newEvent]);
-    swal('bien')
   }
+
+  useEffect(() => {
+    localStorage.setItem("calendario", JSON.stringify(allEvents));
+  }, [allEvents]);
   
   return (
     <ContainerCalendar>

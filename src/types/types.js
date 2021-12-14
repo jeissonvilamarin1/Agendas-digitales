@@ -14,3 +14,8 @@ export const typeMetas={
     list:'list',
     delete:'delete'
  }
+
+ export const typeCalendario={
+    register:'register',
+    list:'list'
+ }

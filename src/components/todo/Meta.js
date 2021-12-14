@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 
 
-export const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
+export const Meta = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
 
     const [editandoTarea, setEditandoTarea] = useState(false)
     const [nuevaTarea, setNuevaTarea] = useState(tarea.texto)
@@ -15,7 +15,8 @@ export const Tarea = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
     }
 
     return (
-      <li className="lista-tareas__tarea">
+  
+     <li className="lista-tareas__tarea">
         <FontAwesomeIcon
           icon={tarea.completada ? faCheckSquare : faSquare}
           className="lista-tareas__icono lista-tareas__icono-check"

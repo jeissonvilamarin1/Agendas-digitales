@@ -7,6 +7,8 @@ import { v4 } from "uuid";
 import AgregarMetas from "../components/AgregarMetas";
 import { ButtonBack, ContainerSectionHero, ContainerSections, HeaderInfo, HeaderSections, HeaderWelcomeQuestion, HeaderWelcomeText } from "../styles/styles";
 import { Link } from "react-router-dom";
+import { Header } from "../components/todo/Header";
+import { ListaMetas } from "../components/todo/ListaMetas";
 
 const firestore = getFirestore();
 
@@ -52,13 +54,14 @@ export const Metas = () => {
   }
 
   useEffect(() => {
-    async function fetchTareas() {
+    async function fetchMetas() {
       const tareasFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(tareasFetchadas);
-      setArrayMetas(tareasFetchadas);
+      localStorage.setItem("metas", JSON.stringify(tareasFetchadas))
+      setMetas(tareasFetchadas);
     }
 
-    fetchTareas();
+    fetchMetas();
   }, [metas]);
 
   console.log(arrayMetas);
@@ -81,6 +84,22 @@ export const Metas = () => {
     ]);
     setInputMetas("");
   };
+  let configMostrarCompletadas = "";
+  if (localStorage.getItem("mostrarCompletadasMetas") === null) {
+    configMostrarCompletadas = true;
+  } else {
+    configMostrarCompletadas =
+      localStorage.getItem("mostrarCompletadasMetas") === true;
+  }
+
+  // El estado de mostrar completadas
+  const [mostrarCompletadas, setMostrarCompletadas] = useState(
+    configMostrarCompletadas
+  );
+  useEffect(() => {
+    localStorage.setItem("mostrarCompletadasMetas", mostrarCompletadas.toString());
+  }, [mostrarCompletadas]);
+
 
   return (
     <>
@@ -97,25 +116,38 @@ export const Metas = () => {
           </HeaderInfo>
         </HeaderSections>
         <ContainerSectionHero>
-            <form className="formulario-tareas" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                className="formulario-tareas__input"
-                placeholder="Escribe una meta"
-                value={inputMetas}
-                onChange={(e) => handleInput(e)}
-              />
-              <button type="submit" className="formulario-tareas__btn">
-                +
-              </button>
-            </form>
+          <form className="formulario-tareas" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="formulario-tareas__input"
+              placeholder="Escribe una meta"
+              value={inputMetas}
+              onChange={(e) => handleInput(e)}
+            />
+            <button type="submit" className="formulario-tareas__btn">
+              +
+            </button>
+          </form>
+
+          <ListaMetas
+            tareas={metas}
+            setTareas={setMetas}
+            mostrarCompletadas={mostrarCompletadas}
+          />
           <AgregarMetas
             id={id}
-            arrayMetas={arrayMetas}
-        
+            arrayMetas={metas}
+
+          />
+          
+          <Header
+            mostrarCompletadas={mostrarCompletadas}
+            setMostrarCompletadas={setMostrarCompletadas}
           />
         </ContainerSectionHero>
       </ContainerSections>
     </>
   );
 };
+
+

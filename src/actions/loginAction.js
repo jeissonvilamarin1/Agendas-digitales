@@ -3,13 +3,14 @@ import { google, facebook } from "../firebase/firebase"
 import { types } from "../types/types"
 
 
-export const login = (id, displayname, email) => {
+export const login = (id, displayname, email, photoURL) => {
     return {
         type: types.login,
         payload: {
             id,
             displayname, 
-            email
+            email, 
+            photoURL
         }
     }
 }
@@ -18,9 +19,11 @@ export const loginGoogle = () => {
     return (dispatch) => {
         const auth = getAuth()
         signInWithPopup(auth, google)
+       
+        
             .then(({ user }) => {
                 console.log(user);
-                dispatch(login(user.uid, user.displayName, user.email));
+                dispatch(login(user.uid, user.displayName, user.email, user.photoURL));
 
             })
             .catch(e => {
@@ -68,6 +71,7 @@ export const startLogout = () => {
       await signOut(auth);
       dispatch(logout() )
       localStorage.setItem('tareas', '')
+      localStorage.setItem('metas', '')
       localStorage.setItem('metas', '')
     };
   };

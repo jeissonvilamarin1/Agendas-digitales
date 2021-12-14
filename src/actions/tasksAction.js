@@ -54,3 +54,4 @@ export const registerMetasincronico=(Meta)=>{
     }
  
  }
+ 

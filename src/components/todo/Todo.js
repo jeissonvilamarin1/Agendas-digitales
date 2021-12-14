@@ -14,6 +14,7 @@ export const TodoApp = () => {
   const id = state.login.id;
   // Obtenermos las tareas guardadas de local storage
 
+
   const tareasGuardadas = localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
     : [];
@@ -29,11 +30,11 @@ export const TodoApp = () => {
 
   // Accedemos al localStorage y comprobamos si mostrar completadas es null
   let configMostrarCompletadas = "";
-  if (localStorage.getItem("mostrarCompletadas") === null) {
+  if (localStorage.getItem("mostrarCompletadasTareas") === null) {
     configMostrarCompletadas = true;
   } else {
     configMostrarCompletadas =
-      localStorage.getItem("mostrarCompletadas") === true;
+      localStorage.getItem("mostrarCompletadasTareas") === true;
   }
 
   // El estado de mostrar completadas
@@ -41,7 +42,7 @@ export const TodoApp = () => {
     configMostrarCompletadas
   );
   useEffect(() => {
-    localStorage.setItem("mostrarCompletadas", mostrarCompletadas.toString());
+    localStorage.setItem("mostrarCompletadasTareas", mostrarCompletadas.toString());
   }, [mostrarCompletadas]);
   
   //-----------------------------------------------------------------------------
@@ -71,7 +72,7 @@ export const TodoApp = () => {
     async function fetchTareas() {
       const tareasFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(tareasFetchadas);
-      localStorage.setItem("tareas", JSON.stringify(tareasFetchadas) )
+      localStorage.setItem("tareas", JSON.stringify(tareasFetchadas))
       setTareas(tareasFetchadas);
     }
 

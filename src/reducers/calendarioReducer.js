@@ -1,7 +1,7 @@
 import { typeCalendario } from "../types/types";
 
 const initialState = {
-    tasks: []
+    Calendario: []
 }
 
 
@@ -9,11 +9,11 @@ export const calendariosReducers = (state = initialState, action) => {
     switch (action.type) {
         case typeCalendario.register:
             return {
-                tasks: [action.payload]
+                Calendario: [action.payload]
             }
         case typeCalendario.list:
             return {
-                tasks: [...action.payload]
+                Calendario: [...action.payload]
             }
         default:
             return state;

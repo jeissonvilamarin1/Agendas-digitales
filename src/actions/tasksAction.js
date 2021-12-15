@@ -65,7 +65,7 @@ export const registerMetasincronico=(Meta)=>{
      const docuRef = doc(db, "usuarios", `${id}`);
      updateDoc(docuRef, { calendario: [...newarray] })
        .then((resp) => {
-         dispatch(registerMetasincronico(newarray));
+         dispatch(registerCalendarioSincronico(newarray));
        })
        .catch((error) => {
          console.log(error);

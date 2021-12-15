@@ -6,7 +6,7 @@ import PublicRouter from './PublicRouter'
 import RoutesApp from './RoutesApp'
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import { useDispatch } from "react-redux";
-import { login } from '../actions/loginAction';
+import { loginEmailPassword, login } from '../actions/loginAction';
 import { Bienvenida } from '../containers/Bienvenida'
 import { Portada } from '../containers/Portada';
 import { Login } from '../containers/Login';
@@ -15,46 +15,67 @@ import { Registro } from '../containers/Registro';
 const AppRouter = () => {
 
   const [logginok, setlogginok] = useState(false)
- 
+  const [checking, setChecking] = useState(true);
   const dispatch = useDispatch()
   
   useEffect(() => {
     const auth = getAuth();
-
-    console.log(auth)
-
     onAuthStateChanged(auth, async (user) => {
 
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName, user.email, user.photoURL ))
-        
         setlogginok(user);
 
       } else {
         setlogginok(false);
       }
+      setChecking(false);
     });
-  }, [dispatch]);
+}, [dispatch, setChecking, setlogginok])
+
+if (checking) {
+  return (
+      <h1>Espere...</h1>
+  )
+}
+
 
   return (
-    <AuthContext.Provider value={logginok}>
+   
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Portada/>} />
-          <Route path="/bienvenida" element={<Bienvenida />} />
+          <Route path="/" element={
+          <PublicRouter  isAuthenticated={logginok}>
+          <Portada/>
+          </PublicRouter>
+          } />
+
+
+          <Route path="/bienvenida" element={
+          <PublicRouter  isAuthenticated={logginok}>
+          <Bienvenida />
+          </PublicRouter>
+          } />
+
           <Route path='/*' element={
-            <PrivateRouter>
+            <PrivateRouter  isAuthenticated={logginok}>
               <RoutesApp />
             </PrivateRouter>
           } />
-          <Route path='login' element={
-            <PublicRouter>
+
+          <Route path='/login' element={
+            <PublicRouter  isAuthenticated={logginok}>
               <Login />
             </PublicRouter>} />
-          <Route exact path="registro" element={<Registro />} />
+           
+          <Route path="/registro" element={
+          <PublicRouter  isAuthenticated={logginok}>
+          <Registro />
+          </PublicRouter>}/>
+
         </Routes>
       </BrowserRouter>
-    </AuthContext.Provider>
+ 
   )
 }
 

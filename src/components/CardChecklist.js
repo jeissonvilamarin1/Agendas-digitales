@@ -7,8 +7,8 @@ export const CardChecklist = () => {
 
 
   return (
+    <>
     <CardListContainer>
-      <>
         <CardCoverListContainer >
           <Link to="/checklist">
             <ButtonOrangeCards type="button">
@@ -16,7 +16,7 @@ export const CardChecklist = () => {
             </ButtonOrangeCards>
           </Link>
         </CardCoverListContainer>
-      </>
     </CardListContainer>
+     </>
   );
 };

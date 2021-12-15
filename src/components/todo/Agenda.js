@@ -3,52 +3,46 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 
 
-export const Meta = ({tarea, toggleCompletada, editarTarea, borrarTarea}) => {
+export const Agenda = ({nota, editarNota, borrarNota}) => {
 
-    const [editandoTarea, setEditandoTarea] = useState(false)
-    const [nuevaTarea, setNuevaTarea] = useState(tarea.texto)
-  
+    const [editandoNota, setEditandoNota] = useState(false)
+    const [nuevaNota, setNuevaNota] = useState(nota)
+
     const handleSubmit = (e) =>{
         e.preventDefault();
-        editarTarea(tarea.id, nuevaTarea)
-        setEditandoTarea(false)
+        editarNota(nota, nuevaNota)
+        setEditandoNota(false)
     }
 
     return (
-  
-     <li className="lista-tareas__tarea">
-        <FontAwesomeIcon
-          icon={tarea.completada ? faCheckSquare : faSquare}
-          className="lista-tareas__icono lista-tareas__icono-check"
-          onClick={() => toggleCompletada(tarea.id)} 
-        />
+      <li className="lista-tareas__tarea">
         <div className="lista-tareas__texto">
-          {editandoTarea ? (
+          {editandoNota ? (
             <form className="formulario-editar-tarea" onSubmit={handleSubmit}>
               <input 
                 type="text" 
                 className="formulario-editar-tarea__input" 
-                value={nuevaTarea}
-                onChange={(e) => setNuevaTarea(e.target.value)}
+                value={nuevaNota}
+                onChange={(e) => setNuevaNota(e.target.value)}
             />
               <button type="submit" className="formulario-editar-tarea__btn">
                 OK
               </button>
             </form>
           ) : (
-            tarea.texto
+            nota
           )}
         </div>
         <div className="lista-tareas__contenedor-botones">
           <FontAwesomeIcon
             icon={faEdit}
             className="lista-tareas__icono lista-tareas__icono-accion"
-            onClick={() => setEditandoTarea(!editandoTarea)}
+            onClick={() => setEditandoNota(!editandoNota)}
           />
           <FontAwesomeIcon
             icon={faTimes}
             className="lista-tareas__icono lista-tareas__icono-accion"
-            onClick={()=> borrarTarea(tarea.id)}
+            onClick={()=> borrarNota(nota)}
           />
         </div>
       </li>

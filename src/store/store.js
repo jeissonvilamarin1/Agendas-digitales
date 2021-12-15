@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import { loginReducer } from '../reducers/loginReducer'
 import { registerReducer } from '../reducers/registerReducer';
+import { portadaReducer } from '../reducers/portadaReducer';
+import { agendaReducer } from '../reducers/agendaReducer';
 import { tasksReducers } from '../reducers/tareasReducer';
 import {MetaReducers} from '../reducers/metasReducer'
 import {userReducer} from '../reducers/userReducer'
@@ -15,7 +17,9 @@ const reducers = combineReducers({
     task: tasksReducers,
     meta: MetaReducers,
     calendario: calendariosReducers,
-    user: userReducer
+    user: userReducer,
+    portada: portadaReducer,
+    agenda: agendaReducer
 })
 
 export const store = createStore(

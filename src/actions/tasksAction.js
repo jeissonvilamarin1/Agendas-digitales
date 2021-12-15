@@ -1,4 +1,4 @@
-import { typeTareas, typeMetas, typeCalendario } from "../types/types";
+import { typeTareas, typeMetas, typeCalendario, typeportada, typeagenda } from "../types/types";
 import {db} from "../firebase/firebase";
 import { doc, setDoc, updateDoc} from "@firebase/firestore";
 
@@ -79,3 +79,52 @@ export const registerMetasincronico=(Meta)=>{
      payload: Calendario,
    };
  };
+
+
+ export const registerportada = (image, id) => {
+  console.log(id)
+  console.log(image)
+  return (dispatch)=>{
+    
+      const docuRef = doc(db,  "usuarios", `${id}`);
+      updateDoc(docuRef, { portada:image })
+        .then((resp) => {
+          dispatch(portada(image));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+}
+
+export const portada=(imagen)=>{
+ return {
+     type: typeportada.portada,
+     payload: imagen
+ }
+
+}
+
+export const registeragenda = (id, arrayagenda) => {
+  console.log(id)
+  return (dispatch)=>{
+    
+      const docuRef = doc(db,  "usuarios", `${id}`);
+      updateDoc(docuRef, { agenda:arrayagenda })
+        .then((resp) => {
+          dispatch(agenda(arrayagenda));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+}
+
+export const agenda=(agenda)=>{
+ return {
+     type: typeagenda.register,
+     payload: agenda
+ }
+
+}
+

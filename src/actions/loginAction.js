@@ -51,7 +51,7 @@ export const loginEmailPassword = ({email, password}) => {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                dispatch(login(user.uid, user.displayName))
+                dispatch(login(user.uid, user.displayName, user.email, user.photoURL))
                 console.log('Bienvenido' + user.displayName);
             })
             .catch(error => {
@@ -72,6 +72,9 @@ export const startLogout = () => {
       dispatch(logout() )
       localStorage.setItem('tareas', '')
       localStorage.setItem('metas', '')
-      localStorage.setItem('metas', '')
+      localStorage.setItem('agenda', '')
+      localStorage.setItem('mostrarCompletadasTareas', '')
+      localStorage.setItem('mostrarCompletadasMetas', '')
+
     };
   };

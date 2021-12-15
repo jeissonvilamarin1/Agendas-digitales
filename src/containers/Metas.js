@@ -29,9 +29,6 @@ export const Metas = () => {
   const state = useSelector((store) => store);
   console.log(state);
   const id = state.login.id;
-
-  const [arrayMetas, setArrayMetas] = useState(null);
-
   async function buscarDocumentOrCrearDocumento(idDocumento) {
     console.log(idDocumento);
     const docuRef = doc(firestore, `usuarios/${idDocumento}`);
@@ -40,9 +37,16 @@ export const Metas = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(metas);
-      console.log(infoDocu);
-      return metas;
+      console.log(infoDocu.metas)
+      if(infoDocu.agenda){
+        return infoDocu.metas;
+      }else{
+        await setDoc(docuRef, { metas: metas });
+        const consulta = await getDoc(docuRef);
+        const infoDocu = consulta.data();
+        console.log(infoDocu);
+        return infoDocu.metas;
+      }
     } else {
       // si no existe
       await setDoc(docuRef, { metas: metas });
@@ -62,9 +66,8 @@ export const Metas = () => {
     }
 
     fetchMetas();
-  }, [metas]);
+  }, [id]);
 
-  console.log(arrayMetas);
   console.log({ id });
 
   const [inputMetas, setInputMetas] = useState("");

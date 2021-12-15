@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, updateProfile } from "@firebas
 import { types } from "../types/types"
 
 
+
 export const register = (email, password, nombre) => {
     return {
         type: types.register,

@@ -39,7 +39,10 @@ export const FormularioPerfil = () => {
             <img
               className="imagenperfil"
               src={currentUser?.photoURL || cover}
+              id="imagen"
               alt="cover"
+              onClick={handleInputChangeFile}
+             
             />
             <Field
               type="text"

@@ -10,7 +10,7 @@ export const CardAgenda = () => {
     <CardAgendaContainer>
       <>
         <CardCoverListContainer >
-          <Link to="/checklist">
+          <Link to="/agenda">
             <ButtonOrangeCards type="button">
               Agenda
             </ButtonOrangeCards>

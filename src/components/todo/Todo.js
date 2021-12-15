@@ -13,8 +13,7 @@ export const TodoApp = () => {
   const state = useSelector((store) => store);
   const id = state.login.id;
   // Obtenermos las tareas guardadas de local storage
-
-
+ console.log(id)
   const tareasGuardadas = localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
     : [];
@@ -57,7 +56,6 @@ export const TodoApp = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-    
       return infoDocu.tareas;
     } else {
       // si no existe

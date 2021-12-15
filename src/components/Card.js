@@ -1,16 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { CardContainer, CardCoverContainer, CardQuote } from "../styles/styles";
+import { CardContainer, CardCoverContainer, CardQuote, ButtonOrangeCards } from "../styles/styles";
 import { Image } from "cloudinary-react";
+import { useDispatch } from "react-redux";
+import { registerportada } from "../actions/tasksAction";
+import { getFirestore, getDoc, doc, setDoc } from "@firebase/firestore";
 
-export const Card = () => {
-  const [imageSelected, setImageSelected] = useState("");
+
+
+const firestore = getFirestore();
+
+export const Card = ({ id }) => {
+
+  async function obtenerimagen() {
+    const docuRef = doc(firestore, `usuarios/${id}`);
+    const consulta = await getDoc(docuRef);
+    console.log(consulta)
+    if (consulta.exists()) {
+      const infoDocu = consulta.data();
+      const urlimage = infoDocu.portada;
+      console.log(urlimage);
+      return urlimage;
+    } else {
+      await setDoc(docuRef, { portada: "" });
+      const consulta = await getDoc(docuRef);
+      const infoDocu = consulta.data();
+      const urlimage = infoDocu.portada;
+      console.log(urlimage);
+      return urlimage;
+    }
+  }
+
   const [image, setImage] = useState("");
 
+  useEffect(async () => {
+    const obtimagen = await obtenerimagen()
+    setImage(obtimagen)
+    console.log(obtimagen)
+  }, []);
+
+  console.log(image)
+
+  const [imageSelected, setImageSelected] = useState("");
+
+  const dispatch = useDispatch();
   const fileUpload = async (file) => {
     const url = "https://api.cloudinary.com/v1_1/dtp6uf9vc/upload";
     const formData = new FormData();
     formData.append("upload_preset", "agendas-digitales");
-    formData.append("file", imageSelected);
+    formData.append("file", file);
 
     const resp = await fetch(url, {
       method: "POST",
@@ -22,12 +59,20 @@ export const Card = () => {
     setImage(urlCloud.secure_url);
   };
 
-  useEffect(() => {}, [image]);
+  const handlePictureClick = () => {
+    setImage("");
+  }
 
+  useEffect(() => {
+    if (image) {
+      dispatch(registerportada(image, id))
+    };
+  }, [image]);
+  console.log(image)
   return (
     <>
-        {!image ? (
-      <CardContainer>
+      {!image ? (
+        <CardContainer>
           <>
             <CardQuote>
               Escoge la imágen que más te guste para que te acompañe e inspire
@@ -35,29 +80,30 @@ export const Card = () => {
             </CardQuote>
             <CardCoverContainer>
               <input
+                id="fileSelector"
                 type="file"
                 onChange={(e) => {
-                  setImageSelected(e.target.files[0]);
+                  fileUpload(e.target.files[0]);
                 }}
                 required
               />
-              <button type="button" onClick={fileUpload}>
-                Cargar imagen
-              </button>
             </CardCoverContainer>
           </>
-          </CardContainer>
-        ) : (
-          <CardContainer>
-            <Image
-              cloudName="dtp6uf9vc"
-              publicId={`${image}`}
-              style={{ width: "225px", height: "100%", opacity: "0.9" }}
-            />
-      
-          </CardContainer>
-        )}
-      
+        </CardContainer>
+      ) : (
+        <CardContainer>
+          <Image
+            cloudName="dtp6uf9vc"
+            publicId={`${image}`}
+            style={{ width: "225px", height: "100%", opacity: "0.9" }}
+          />
+          <ButtonOrangeCards type="button"
+            style={{ width: "225px", height: "7%", opacity: "0.9", cursor: "pointer" }}
+            onClick={handlePictureClick}
+          >Editar</ButtonOrangeCards>
+        </CardContainer>
+      )}
+
     </>
   );
 };

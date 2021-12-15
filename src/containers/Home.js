@@ -30,7 +30,7 @@ export const Home = () => {
             <CardWelcomeQuestion>¿Ya planeaste tu día?</CardWelcomeQuestion>
           </CardWelcomeContainer>
           <CardsContainer>
-            <Card />
+            <Card id={state.login.id}/>
             <CardChecklist />
             <CardAgenda />
             <CardHorarios />

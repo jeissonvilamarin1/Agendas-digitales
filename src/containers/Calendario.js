@@ -1,57 +1,88 @@
-// import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import {
+  ButtonBlack,
+  EventContainer,
+  CardWelcomeContainer,
+  CardWelcomeQuestion,
+  CardWelcomeText,
+  ContainerCalendar,
+} from "../styles/styles";
 import ReactDatePicker from "react-datepicker";
-import { ButtonBlack, EventContainer, CardWelcomeContainer, CardWelcomeQuestion, CardWelcomeText, ContainerCalendar } from "../styles/styles";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { Navbar } from "../components/Navbar";
 import { es } from "date-fns/locale";
 import moment from "moment";
-import swal from "sweetalert2";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "moment/locale/es-mx";
 
 
+const firestore = getFirestore();
 const localizer = momentLocalizer(moment);
 
-const events = [
-  {
-    title: "Big Meeting",
-    allDay: true,
-    start: new Date(2021, 12, 15),
-    end: new Date(2021, 12, 16),
-  },
-  {
-    title: "Vacation",
-    start: new Date(2021, 12, 18),
-    end: new Date(2021, 12, 20),
-  },
-  {
-    title: "Conference",
-    start: new Date(2021, 12, 23),
-    end: new Date(2021, 12, 23),
-  },
-];
-
 export const Calendario = () => {
-  
-  const [newEvent, setNewEvent] = useState({
-    title: "",
-    start: "",
-    end: "",
-  });
-  
-  const [allEvents, setAllEvents] = useState(events);
-  console.log(allEvents)
+  const calendarioGuardado = localStorage.getItem("calendario")
+    ? JSON.parse(localStorage.getItem("calendario"))
+    : [];
 
-  const handleAddEvent = () => {
-    setAllEvents([...allEvents, newEvent]);
+  const [calendario, setCalendario] = useState(calendarioGuardado);
+  console.log(calendario);
+
+  useEffect(() => {
+    localStorage.setItem("calendario", JSON.stringify(calendario));
+  }, [calendario]);
+
+  //-----------------------Local--------------------------------------------
+
+  const state = useSelector((store) => store);
+  console.log(state);
+  const id = state.login.id;
+
+  async function buscarDocumentOrCrearDocumento(idDocumento) {
+    console.log(idDocumento);
+    const docuRef = doc(firestore, `usuarios/${idDocumento}`);
+    const consulta = await getDoc(docuRef);
+
+    if (consulta.exists()) {
+      // si sí existe
+      const infoDocu = consulta.data();
+      console.log(calendario);
+      console.log(infoDocu);
+      return calendario;
+    } else {
+      // si no existe
+      await setDoc(docuRef, { calendario: calendario });
+      const consulta = await getDoc(docuRef);
+      const infoDocu = consulta.data();
+      console.log(infoDocu);
+      return infoDocu.calendario;
+    }
   }
 
   useEffect(() => {
-    localStorage.setItem("calendario", JSON.stringify(allEvents));
-  }, [allEvents]);
-  
+    async function fetchCalendario() {
+      const calendarioFetchadas = await buscarDocumentOrCrearDocumento(id);
+      console.log(calendarioFetchadas);
+      localStorage.setItem("calendario", JSON.stringify(calendarioFetchadas));
+      setCalendario(calendarioFetchadas);
+    }
+
+    fetchCalendario();
+  }, [calendario]);
+
+  const [newEvent, setNewEvent] = useState([
+    {
+      title: "",
+      start: "",
+      end: "",
+    },
+  ]);
+
+  const handleAddEvent = () => {
+    setCalendario([...calendario, newEvent]);
+  };
   return (
     <ContainerCalendar>
       <CardWelcomeContainer>
@@ -82,14 +113,17 @@ export const Calendario = () => {
           locale={es}
           dateFormat="dd-MM-yyyy"
         />
-        <ButtonBlack style={{ marginTop: "10px" }} onClick={()=>handleAddEvent()}>
+        <ButtonBlack
+          style={{ marginTop: "10px" }}
+          onClick={() => handleAddEvent()}
+        >
           Agregar Evento
         </ButtonBlack>
       </EventContainer>
       <Calendar
         className="calendario"
         localizer={localizer}
-        events={allEvents}
+        events={calendario}
         startAccessor="start"
         endAccessor="end"
         culture="es-mx"

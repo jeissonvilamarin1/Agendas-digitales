@@ -41,16 +41,16 @@ export const Metas = () => {
       if(infoDocu.metas){
         return infoDocu.metas;
       }else{
-        await setDoc(docuRef, { metas: metas });
-        const consulta = await setDoc(docuRef);
+        await updateDoc(docuRef, { metas: metas });
+        const consulta = await getDoc(docuRef);
         const infoDocu = consulta.data();
         console.log(infoDocu);
         return infoDocu.metas;
       }
     } else {
       // si no existe
-      await setDoc(docuRef, { metas: metas });
-      const consulta = await updateDoc(docuRef);
+      await updateDoc(docuRef, { metas: metas });
+      const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       console.log(infoDocu);
       return infoDocu.metas;

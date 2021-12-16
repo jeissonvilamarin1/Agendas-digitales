@@ -59,16 +59,16 @@ export const TodoApp = () => {
       if(infoDocu.tareas){
         return infoDocu.tareas;
       }else{
-        await setDoc(docuRef, { tareas: tareas });
-        const consulta = await setDoc(docuRef);
+        await updateDoc(docuRef, { tareas: tareas });
+        const consulta = await getDoc(docuRef);
         const infoDocu = consulta.data();
         console.log(infoDocu);
         return infoDocu.tareas;
       }
     } else {
       // si no existe
-      await setDoc(docuRef, { tareas: tareas });
-      const consulta = await updateDoc(docuRef);
+      await updateDoc(docuRef, { tareas: tareas });
+      const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       console.log(infoDocu);
       return infoDocu.tareas;

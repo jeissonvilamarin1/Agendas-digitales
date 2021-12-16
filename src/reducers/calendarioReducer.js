@@ -4,7 +4,6 @@ const initialState = {
     Calendario: []
 }
 
-
 export const calendariosReducers = (state = initialState, action) => {
     switch (action.type) {
         case typeCalendario.register:

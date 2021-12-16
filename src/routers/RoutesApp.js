@@ -7,6 +7,7 @@ import { Agenda } from '../containers/Agenda';
 import { CheckList } from '../containers/CheckList';
 import { Metas } from '../containers/Metas';
 import { Navigate } from "react-router-dom"
+import { Calificaciones } from '../containers/Calificaciones';
 
 
 const RoutesApp = () => {
@@ -21,6 +22,7 @@ const RoutesApp = () => {
           <Route path="/agenda" element={<Agenda/>} />
           <Route path="/checklist" element={<CheckList/>} />
           <Route path="/metas" element={<Metas/>} />
+          <Route path="/calificaciones" element={<Calificaciones/>} />
         </Routes>
         </>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, updateDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "@firebase/firestore";
 import { v4 } from "uuid";
 import AgregarMetas from "../components/AgregarMetas";
 import { ButtonBack, ContainerSectionHero, ContainerSections, HeaderInfo, HeaderSections, HeaderWelcomeQuestion, HeaderWelcomeText } from "../styles/styles";

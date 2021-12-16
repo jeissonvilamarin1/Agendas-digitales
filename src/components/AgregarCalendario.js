@@ -15,7 +15,7 @@ const hanleRegistro= e =>{
 }
 
 return (
-  <Container>
+  <>
     <Form onSubmit={hanleRegistro}>
       <Row className="mb-3 d-flex justify-content-center">
         <Col className="d-flex justify-content-center">
@@ -23,7 +23,7 @@ return (
         </Col>
       </Row>
     </Form>
-  </Container>
+  </>
 );
 };
 

@@ -8,6 +8,7 @@ import {
   CardWelcomeQuestion,
   CardWelcomeText,
   ContainerCalendar,
+  ButtonOrange,
 } from "../styles/styles";
 import ReactDatePicker from "react-datepicker";
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -17,7 +18,8 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "moment/locale/es-mx";
-import AgregarCalendario from '../components/AgregarCalendario'
+import AgregarCalendario from '../components/AgregarCalendario';
+
 
 const firestore = getFirestore();
 const localizer = momentLocalizer(moment);
@@ -113,12 +115,12 @@ export const Calendario = () => {
           locale={es}
           dateFormat="dd-MM-yyyy"
         />
-        <ButtonBlack
+        <ButtonOrange
           style={{ marginTop: "10px" }}
           onClick={() => handleAddEvent()}
         >
           Agregar Evento
-        </ButtonBlack>
+        </ButtonOrange>
         <AgregarCalendario id={id} arrayCalendario={calendario} />
       </EventContainer>
       <Calendar

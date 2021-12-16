@@ -10,7 +10,7 @@ export const CardCalificaciones = () => {
     <CardCalificacionesContainer>
       <>
         <CardCoverListContainer >
-          <Link to="/checklist">
+          <Link to="/calificaciones">
             <ButtonOrangeCards type="button">
               Calificaciones
             </ButtonOrangeCards>

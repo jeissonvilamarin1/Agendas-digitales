@@ -10,7 +10,7 @@ export const CardViajes = () => {
     <CardViajesContainer>
       <>
         <CardCoverListContainer>
-          <Link to="/metas">
+          <Link to="/viajes">
             <ButtonOrangeCards type="button">
               Viajes
             </ButtonOrangeCards>

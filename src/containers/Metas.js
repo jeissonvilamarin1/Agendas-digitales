@@ -29,6 +29,7 @@ export const Metas = () => {
   const state = useSelector((store) => store);
   console.log(state);
   const id = state.login.id;
+  
   async function buscarDocumentOrCrearDocumento(idDocumento) {
     console.log(idDocumento);
     const docuRef = doc(firestore, `usuarios/${idDocumento}`);
@@ -87,6 +88,7 @@ export const Metas = () => {
     ]);
     setInputMetas("");
   };
+
   let configMostrarCompletadas = "";
   if (localStorage.getItem("mostrarCompletadasMetas") === null) {
     configMostrarCompletadas = true;

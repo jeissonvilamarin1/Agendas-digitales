@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
+  ButtonBlue,
   ButtonBack,
   ButtonCalification,
   ContainerSectionHero,
@@ -15,18 +16,24 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "../hooks/useForm";
 
 export const CalificacionesId = () => {
-  const [notas, setNotas] = useState(1);
+  const [notas, setNotas] = useState([]);
 
   const [formValue, handleInputChange, reset] = useForm({
-    nota1:{
-      valor:'',
-      ponderacion:''
-    }
+      valor1:'',
+      ponderacion1:'',
+      valor2:'',
+      ponderacion2:'',
+      valor3:'',
+      ponderacion3:'',
+      valor4:'',
+      ponderacion4:'',
+      valor5:'',
+      ponderacion5:'',
   });
 
-  const { nota, ponderacion } = formValue;
+  const {valor1, ponderacion1, valor2, ponderacion2, valor3, ponderacion3, valor4, ponderacion4, valor5, ponderacion5} = formValue;
 
-  console.log(nota, ponderacion);
+  console.log(formValue);
 
   let params = useParams();
 
@@ -36,8 +43,7 @@ export const CalificacionesId = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNotas([...notas, notas]);
-    reset();
+    console.log(notas)
   };
 
   return (
@@ -68,106 +74,26 @@ export const CalificacionesId = () => {
                 <td>
                   <input
                     className="input-notas"
-                    name="nota"
+                    name={valor1}
                     placeholder="Nota 1"
-                    value={nota}
+                    value={valor1}
                     onChange={handleInputChange}
                   />
                 </td>
                 <td>
                   <input
                     className="input-notas"
-                    name="ponderacion"
+                    name={ponderacion1}
                     placeholder="Ponderacion %"
-                    value={ponderacion}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="nota"
-                    placeholder="Nota 2"
-                    value={nota}
-                    onChange={handleInputChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="ponderacion"
-                    placeholder="Ponderacion %"
-                    value={ponderacion}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="nota"
-                    placeholder="Nota 3"
-                    value={nota}
-                    onChange={handleInputChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="ponderacion"
-                    placeholder="Ponderacion %"
-                    value={ponderacion}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="nota"
-                    placeholder="Nota 4"
-                    value={nota}
-                    onChange={handleInputChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="ponderacion"
-                    placeholder="Ponderacion %"
-                    value={ponderacion}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="nota"
-                    placeholder="Nota 5"
-                    value={nota}
-                    onChange={handleInputChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input-notas"
-                    name="ponderacion"
-                    placeholder="Ponderacion %"
-                    value={ponderacion}
-                    onChange={handleInputChange}
+                    value={ponderacion1}
+                    onChange={() => handleInputChange}
                   />
                 </td>
               </tr>
               
             </table>
+            <ButtonBlue type="submit">Calcular nota</ButtonBlue>
           </form>
-
         </ContainerSectionHero>
       </ContainerSections>
     </>

@@ -9,6 +9,8 @@ import { Metas } from '../containers/Metas';
 import { Navigate } from "react-router-dom"
 import { Calificaciones } from '../containers/Calificaciones';
 import { CalificacionesId } from '../components/CalificacionesId';
+import { Viajes } from '../containers/Viajes';
+import { ViajesId } from '../components/ViajesId';
 
 
 const RoutesApp = () => {
@@ -25,6 +27,8 @@ const RoutesApp = () => {
           <Route path="/metas" element={<Metas/>} />
           <Route path="/calificaciones" element={<Calificaciones/>} />
           <Route path="/calificaciones/:id" element={<CalificacionesId/>} />
+          <Route path="/viajes" element={<Viajes/>} />
+          <Route path="/viajes/:id" element={<ViajesId/>} />
         </Routes>
         </>
   );

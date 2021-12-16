@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "@firebase/firestore";
 import {
   ButtonBlack,
   EventContainer,
@@ -50,8 +50,22 @@ export const Calendario = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(infoDocu.calendario);
-      return calendario;
+      const date = Math.floor(
+        new Date(Number(infoDocu.calendario[0].start))
+        );
+        let m = moment(date);
+      console.log(m.toString());
+
+      if (infoDocu.calendario) {
+        console.log(infoDocu.calendario);
+        return infoDocu.calendario;
+      } else {
+        await updateDoc(docuRef, { calendario: calendario });
+        const consulta = await getDoc(docuRef);
+        const infoDocu = consulta.data();
+        console.log(infoDocu);
+        return infoDocu.calendario;
+      }
     } else {
       // si no existe
       await setDoc(docuRef, { calendario: calendario });
@@ -71,7 +85,7 @@ export const Calendario = () => {
     }
 
     fetchCalendario();
-  }, [calendario]);
+  }, [id]);
 
   const [newEvent, setNewEvent] = useState([
     {

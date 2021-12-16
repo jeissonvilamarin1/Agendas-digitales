@@ -360,7 +360,6 @@
 	margin: 0 auto;
 }
 
-<<<<<<< HEAD
 .footerhorarios{
 	position: absolute;
 	left: 0%;
@@ -386,7 +385,8 @@
 	bottom: -20px;
 	left: 48%;
 	transform: translateX(-20px);
-=======
+}
+
 .calificacion{
 	width: 90%;
 	height: 60px;
@@ -441,5 +441,4 @@ td {
 	border: 1px solid #0A8791;
 	box-sizing: border-box;
 	border-radius: 6px;
->>>>>>> 7d18eb6c5287a42086d4992e0fd92cf81a0e81b4
 }

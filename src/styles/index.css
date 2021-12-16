@@ -360,6 +360,7 @@
 	margin: 0 auto;
 }
 
+<<<<<<< HEAD
 .footerhorarios{
 	position: absolute;
 	left: 0%;
@@ -385,4 +386,60 @@
 	bottom: -20px;
 	left: 48%;
 	transform: translateX(-20px);
+=======
+.calificacion{
+	width: 90%;
+	height: 60px;
+	background: #FFFFFF;
+	border: 1px solid #0A8791;
+	box-sizing: border-box;
+	border-radius: 15px;
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 22px;
+	color: #0A8791;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.button-calification{
+	border: none;
+	background-color: transparent;
+	color: inherit;
+	font-weight: 600;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 320px;
+  border: hidden;
+}
+
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+	border: hidden;
+
+}
+
+.input-notas{
+	width:100%;
+	background: #FFFFFF;
+	border: 1px solid #0A8791;
+	box-sizing: border-box;
+	border-radius: 6px;
+>>>>>>> 7d18eb6c5287a42086d4992e0fd92cf81a0e81b4
 }

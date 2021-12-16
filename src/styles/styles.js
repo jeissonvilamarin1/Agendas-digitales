@@ -43,13 +43,13 @@ export const ButtonOrange = styled.button`
   background-color: white;
   border: 2px solid #fba83c;
   height: 60px;
-  width: 260px;
+  width: 280px;
   font-size: 15px;
   font-weight: 600;
   border-radius: 15px;
   color: #fba83c;
   z-index: 2;
-
+  margin-bottom: 8px;
 
   &&:hover {
     color: white;
@@ -484,3 +484,23 @@ export const CardViajesContainer = styled.div`
   margin-right: 20px;
   background-image: url("https://res.cloudinary.com/dtp6uf9vc/image/upload/v1638975417/Agendas%20Digitales/viajes-cover_bkzcqz.png");
 `;
+
+export const ButtonCalification = styled.button`
+  width: 90%;
+  height: 60px;
+  background: #ffffff;
+  border: 1px solid #0a8791;
+  box-sizing: border-box;
+  border-radius: 15px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #0a8791;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+

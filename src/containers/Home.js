@@ -33,10 +33,10 @@ export const Home = () => {
             <Card id={state.login.id}/>
             <CardChecklist />
             <CardAgenda />
-            <CardHorarios />
+            {/* <CardHorarios /> */}
             <CardCalificaciones />
             <CardMetas />
-            <CardContrasenas />
+            {/* <CardContrasenas /> */}
             <CardViajes />
           </CardsContainer>
           <Navbar />

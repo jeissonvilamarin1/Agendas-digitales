@@ -16,11 +16,11 @@ export const Agenda = ({ nota, editarNota, borrarNota }) => {
 
 useEffect(() => {
 if(editandoNota==true){
-Swal({  
+new Swal({  
   position: "center",
   title: "Ingrese nueva nota",
   input: 'textarea',
-  inputValue:nuevaNota,
+  inputValue: nuevaNota,
   confirmButtonColor: "#fba83c", 
   inputBorderColor:"#fba83c", 
 }).then((result) =>{ 

@@ -3,6 +3,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import { registerTasks } from "../actions/tasksAction";
 import { useDispatch } from "react-redux";
 import { ButtonBlue } from "../styles/styles";
+import Swal from "sweetalert2";
 
 const AgregarTarea = ({ id, arrayTareas }) => {
   console.log(id);
@@ -12,6 +13,14 @@ const AgregarTarea = ({ id, arrayTareas }) => {
   const hanleRegistro = (e) => {
     e.preventDefault();
     dispatch(registerTasks(arrayTareas, id));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      text: "Información Actualizada",
+      title: "",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (

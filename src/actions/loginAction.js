@@ -73,6 +73,7 @@ export const startLogout = () => {
       localStorage.setItem('tareas', '')
       localStorage.setItem('metas', '')
       localStorage.setItem('agenda', '')
+      localStorage.setItem('calendario', '')
       localStorage.setItem('mostrarCompletadasTareas', '')
       localStorage.setItem('mostrarCompletadasMetas', '')
 

@@ -11,17 +11,17 @@ import { ListaAgenda} from "../components/todo/ListaAgenda"
 
 const firestore = getFirestore();
 
-export const Agenda = () => {
+export const Horario = () => {
 
-  const agendaGuardada = localStorage.getItem("agenda")
-    ? JSON.parse(localStorage.getItem("agenda"))
+  const horarioGuardada = localStorage.getItem("horario")
+    ? JSON.parse(localStorage.getItem("horario"))
     : [];
 
-  const [agenda, setagenda] = useState(agendaGuardada);
+  const [horario, sethorario] = useState(horarioGuardada);
 
   useEffect(() => {
-    localStorage.setItem("agenda", JSON.stringify(agenda));
-  }, [agenda]);
+    localStorage.setItem("horario", JSON.stringify(horario));
+  }, [horario]);
 
   //-----------------------------------------------------------------------------
 
@@ -37,54 +37,57 @@ export const Agenda = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(infoDocu.agenda)
-      if(infoDocu.agenda){
-        return infoDocu.agenda;
+      console.log(infoDocu.horario)
+      if(infoDocu.horario){
+        return infoDocu.horario;
       }else{
-        await updateDoc(docuRef, { agenda: agenda });
+        await updateDoc(docuRef, { horario: horario });
         const consulta = await getDoc(docuRef);
         const infoDocu = consulta.data();
         console.log(infoDocu);
-        return infoDocu.agenda;
+        return infoDocu.horario;
       }
     } else {
       // si no existe
-      await updateDoc(docuRef, { agenda: agenda });
+      await updateDoc(docuRef, { horario: horario });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       console.log(infoDocu);
-      return infoDocu.agenda;
+      return infoDocu.horario;
     }
   }
 
   useEffect(() => {
-    async function fetchagenda() {
+    async function fetchhorario() {
       const tareasFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(tareasFetchadas);
-      localStorage.setItem("agenda", JSON.stringify(tareasFetchadas))
-      setagenda(tareasFetchadas);
+      localStorage.setItem("horario", JSON.stringify(tareasFetchadas))
+      sethorario(tareasFetchadas);
     }
 
-    fetchagenda();
+    fetchhorario();
   }, [id]);
   console.log({ id });
 
-  const [inputagenda, setInputagenda] = useState("");
+  const [inputhorario, setInputhorario] = useState("");
+  const [contador, setcontador] = useState(1);
+  const [agregarhorario, setagregarhorario] = useState(false);
 
   const handleInput = (e) => {
-    setInputagenda(e.target.value);
+    setInputhorario(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setagenda([
-      ...agenda,{
+    setagregarhorario(true)
+    sethorario([
+      ...horario,{
         id: v4(),
-        texto:  inputagenda,
+        texto:  inputhorario,
       }
         
     ]);
-    setInputagenda("");
+    setInputhorario("");
   };
 
 
@@ -99,34 +102,32 @@ export const Agenda = () => {
             </ButtonBack>
           </Link>
           <HeaderInfo>
-            <HeaderWelcomeText>Agenda</HeaderWelcomeText>
-            <HeaderWelcomeQuestion>¿Y hoy que estas pensando?</HeaderWelcomeQuestion>
+            <HeaderWelcomeText>Horario</HeaderWelcomeText>
+            <HeaderWelcomeQuestion>Es hora de dejar de procrastinar</HeaderWelcomeQuestion>
           </HeaderInfo>
         </HeaderSections>
         <ContainerSectionHero>
-        <form className="formulario-tareastext" onSubmit={handleSubmit}>
-          <textarea
-            type="text"
-            className="formulario-tareas__textarea"
-            placeholder="Escribe tus notas"
-            value={inputagenda}
-            onChange={(e) => handleInput(e)}
-
-          />
-
-          <button type="submit" className="formulario-tareas__btn">
-            +
-          </button>  
+      
+         {agregarhorario ? (
+        <form className="formulario-editar-tarea">
+            <input
+              type="text"
+              className="formulario-editar-tarea__input"
+              value="hola"
+            />
+            <button className="formulario-editar-tarea__btn">
+              OK
+            </button>
           </form>
-
-          < ListaAgenda
-           agenda={agenda}
-           setagenda={setagenda}
-          />
-          <AgregarAgenda
-            id={id}
-            arrayAgenda={agenda}
-          />
+        ) : (
+    ""
+        )}
+          <form className="formulario-editar-tarea" onSubmit={handleSubmit}>
+          <div className="footerhorarios">
+          <button type="submit" className="formulario-tareas__btnhorarios">
+            +
+          </button>  </div>  </form>
+         
         
 
         </ContainerSectionHero>

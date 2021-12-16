@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc} from "@firebase/firestore";
 import {
   ButtonBlack,
   EventContainer,
@@ -22,16 +22,15 @@ import AgregarCalendario from '../components/AgregarCalendario'
 const firestore = getFirestore();
 const localizer = momentLocalizer(moment);
 
-export const Calendario = () => {
-  const calendarioGuardado = localStorage.getItem("calendario")
-    ? JSON.parse(localStorage.getItem("calendario"))
-    : [];
+
+export const Calendario =()=>{
+const [calendarioGuardado, setcalendarioGuardado] = useState([]);
 
   const [calendario, setCalendario] = useState(calendarioGuardado);
   console.log(calendario);
 
   useEffect(() => {
-    localStorage.setItem("calendario", JSON.stringify(calendario));
+    setcalendarioGuardado([...calendarioGuardado, calendario])
   }, [calendario]);
 
   //-----------------------Local--------------------------------------------
@@ -48,9 +47,16 @@ export const Calendario = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(infoDocu.calendario);
-      return calendario;
-    } else {
+      console.log(infoDocu);
+      if(infoDocu.calendario){
+        return infoDocu.calendario;
+      }else{
+        await updateDoc(docuRef, { calendario: calendario });
+        const consulta = await getDoc(docuRef);
+        const infoDocu = consulta.data();
+        console.log(infoDocu);
+        return infoDocu.calendario;
+    }} else {
       // si no existe
       await setDoc(docuRef, { calendario: calendario });
       const consulta = await getDoc(docuRef);
@@ -64,12 +70,12 @@ export const Calendario = () => {
     async function fetchCalendario() {
       const calendarioFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(calendarioFetchadas);
-      localStorage.setItem("calendario", JSON.stringify(calendarioFetchadas));
+      setcalendarioGuardado([...calendarioGuardado, calendarioFetchadas])
       setCalendario(calendarioFetchadas);
     }
 
     fetchCalendario();
-  }, [calendario]);
+  }, [id]);
 
   const [newEvent, setNewEvent] = useState([
     {

@@ -3,7 +3,7 @@ import { FormularioTareas } from "./FormularioTareas";
 import { Header } from "./Header";
 import { ListaTareas } from "./ListaTareas";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "@firebase/firestore";
 import AgregarTarea from "../AgregarTareas";
 import { ContainerSectionHero } from "../../styles/styles";
 
@@ -17,7 +17,7 @@ export const TodoApp = () => {
   const tareasGuardadas = localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
     : [];
-
+  console.log(tareasGuardadas)
   // Establecemos el estado de las tareas.
   const [tareas, setTareas] = useState(tareasGuardadas);
   
@@ -25,7 +25,7 @@ export const TodoApp = () => {
   //Guardando el estado dentro de local storage
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(tareas));
-  }, [tareas]);
+  }, []);
 
   // Accedemos al localStorage y comprobamos si mostrar completadas es null
   let configMostrarCompletadas = "";
@@ -46,7 +46,6 @@ export const TodoApp = () => {
   
   //-----------------------------------------------------------------------------
   
-  
 
   const [arrayTareas, setArrayTareas] = useState(null);
   
@@ -56,13 +55,24 @@ export const TodoApp = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      return infoDocu.tareas;
+      console.log(infoDocu.tareas)
+      if(infoDocu.tareas){
+        return infoDocu.tareas;
+      }else{
+        await setDoc(docuRef, { tareas: tareas });
+        const consulta = await setDoc(docuRef);
+        const infoDocu = consulta.data();
+        console.log(infoDocu);
+        return infoDocu.tareas;
+      }
     } else {
       // si no existe
       await setDoc(docuRef, { tareas: tareas });
-      const consulta = await getDoc(docuRef);
+      const consulta = await updateDoc(docuRef);
       const infoDocu = consulta.data();
+      console.log(infoDocu);
       return infoDocu.tareas;
+
     }
   }
 

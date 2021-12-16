@@ -17,7 +17,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "moment/locale/es-mx";
-
+import AgregarCalendario from '../components/AgregarCalendario'
 
 const firestore = getFirestore();
 const localizer = momentLocalizer(moment);
@@ -48,15 +48,14 @@ export const Calendario = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      console.log(calendario);
-      console.log(infoDocu);
+      console.log(infoDocu.calendario);
       return calendario;
     } else {
       // si no existe
       await setDoc(docuRef, { calendario: calendario });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
-      console.log(infoDocu);
+      console.log(infoDocu.calendario);
       return infoDocu.calendario;
     }
   }
@@ -83,6 +82,7 @@ export const Calendario = () => {
   const handleAddEvent = () => {
     setCalendario([...calendario, newEvent]);
   };
+
   return (
     <ContainerCalendar>
       <CardWelcomeContainer>
@@ -119,6 +119,7 @@ export const Calendario = () => {
         >
           Agregar Evento
         </ButtonBlack>
+        <AgregarCalendario id={id} arrayCalendario={calendario} />
       </EventContainer>
       <Calendar
         className="calendario"

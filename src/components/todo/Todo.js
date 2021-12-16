@@ -3,7 +3,7 @@ import { FormularioTareas } from "./FormularioTareas";
 import { Header } from "./Header";
 import { ListaTareas } from "./ListaTareas";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc,  updateDoc } from "@firebase/firestore";
 import AgregarTarea from "../AgregarTareas";
 import { ContainerSectionHero } from "../../styles/styles";
 
@@ -56,10 +56,19 @@ export const TodoApp = () => {
     if (consulta.exists()) {
       // si sí existe
       const infoDocu = consulta.data();
-      return infoDocu.tareas;
+      console.log(infoDocu.tareas)
+      if(infoDocu.tareas){
+        return infoDocu.tareas;
+      }else{
+        await updateDoc(docuRef, { tareas: tareas });
+        const consulta = await getDoc(docuRef);
+        const infoDocu = consulta.data();
+        console.log(infoDocu);
+        return infoDocu.tareas;
+      }
     } else {
       // si no existe
-      await setDoc(docuRef, { tareas: tareas });
+      await updateDoc(docuRef, { tareas: tareas });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       return infoDocu.tareas;

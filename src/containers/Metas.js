@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, getDoc, setDoc } from "@firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "@firebase/firestore";
 import { v4 } from "uuid";
 import AgregarMetas from "../components/AgregarMetas";
 import { ButtonBack, ContainerSectionHero, ContainerSections, HeaderInfo, HeaderSections, HeaderWelcomeQuestion, HeaderWelcomeText } from "../styles/styles";
@@ -38,10 +38,10 @@ export const Metas = () => {
       // si sí existe
       const infoDocu = consulta.data();
       console.log(infoDocu.metas)
-      if(infoDocu.agenda){
+      if(infoDocu.metas){
         return infoDocu.metas;
       }else{
-        await setDoc(docuRef, { metas: metas });
+        await updateDoc(docuRef, { metas: metas });
         const consulta = await getDoc(docuRef);
         const infoDocu = consulta.data();
         console.log(infoDocu);
@@ -49,7 +49,7 @@ export const Metas = () => {
       }
     } else {
       // si no existe
-      await setDoc(docuRef, { metas: metas });
+      await updateDoc(docuRef, { metas: metas });
       const consulta = await getDoc(docuRef);
       const infoDocu = consulta.data();
       console.log(infoDocu);

@@ -3,7 +3,7 @@ import { Container, Form, Col, Row } from "react-bootstrap";
 import { registeragenda } from "../actions/tasksAction";
 import { useDispatch } from 'react-redux';
 import { ButtonBlue } from "../styles/styles";
-
+import Swal from "sweetalert2";
 
 const AgregarAgenda= ({id, arrayAgenda}) => {
 console.log(id)
@@ -12,7 +12,16 @@ const dispatch = useDispatch();
 
 const hanleRegistro= e =>{
   e.preventDefault();
-  dispatch(registeragenda(id, arrayAgenda));
+  dispatch(registeragenda(id, arrayAgenda))
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    text: "Información Actualizada",
+    title: "",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+  ;
 }
 
 return (

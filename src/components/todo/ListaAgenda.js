@@ -2,22 +2,19 @@ import React, { useEffect } from 'react'
 import { Agenda } from './Agenda'
 
 export const ListaAgenda= ({agenda, setagenda}) => {
- console.log(agenda)
-
-    
-    const editarNota = (nota, nuevoTexto) => {
-       
+ console.log(agenda)    
+    const editarNota = (id, nuevoTexto) => {
         setagenda(agenda.map((tarea) => {
-            if(tarea=== nota){
-                return {...tarea, nuevoTexto}
+            if(tarea.id===id){
+                return {...tarea, texto: nuevoTexto}
             }
             return tarea;
     }))
     } 
 
-    const borrarNota = (nota) =>{
+    const borrarNota = (id) =>{
         setagenda(agenda.filter((tarea) => {
-            if (tarea== nota) {
+            if (tarea.id !== id) {
               return tarea;
             }
             return;

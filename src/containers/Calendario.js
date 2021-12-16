@@ -24,16 +24,15 @@ import AgregarCalendario from '../components/AgregarCalendario';
 const firestore = getFirestore();
 const localizer = momentLocalizer(moment);
 
-export const Calendario = () => {
-  const calendarioGuardado = localStorage.getItem("calendario")
-    ? JSON.parse(localStorage.getItem("calendario"))
-    : [];
+
+export const Calendario =()=>{
+const [calendarioGuardado, setcalendarioGuardado] = useState([]);
 
   const [calendario, setCalendario] = useState(calendarioGuardado);
   console.log(calendario);
 
   useEffect(() => {
-    localStorage.setItem("calendario", JSON.stringify(calendario));
+    setcalendarioGuardado([...calendarioGuardado, calendario])
   }, [calendario]);
 
   //-----------------------Local--------------------------------------------
@@ -80,7 +79,7 @@ export const Calendario = () => {
     async function fetchCalendario() {
       const calendarioFetchadas = await buscarDocumentOrCrearDocumento(id);
       console.log(calendarioFetchadas);
-      localStorage.setItem("calendario", JSON.stringify(calendarioFetchadas));
+      setcalendarioGuardado([...calendarioGuardado, calendarioFetchadas])
       setCalendario(calendarioFetchadas);
     }
 

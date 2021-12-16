@@ -8,9 +8,11 @@ import { CheckList } from '../containers/CheckList';
 import { Metas } from '../containers/Metas';
 import { Navigate } from "react-router-dom"
 import { Calificaciones } from '../containers/Calificaciones';
+import { Horario } from '../containers/Horarios';
 import { CalificacionesId } from '../components/CalificacionesId';
 import { Viajes } from '../containers/Viajes';
 import { ViajesId } from '../components/ViajesId';
+
 
 
 const RoutesApp = () => {
@@ -26,6 +28,7 @@ const RoutesApp = () => {
           <Route path="/checklist" element={<CheckList/>} />
           <Route path="/metas" element={<Metas/>} />
           <Route path="/calificaciones" element={<Calificaciones/>} />
+          <Route path="/horario" element={<Horario/>} />
           <Route path="/calificaciones/:id" element={<CalificacionesId/>} />
           <Route path="/viajes" element={<Viajes/>} />
           <Route path="/viajes/:id" element={<ViajesId/>} />

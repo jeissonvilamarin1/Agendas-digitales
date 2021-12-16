@@ -188,6 +188,24 @@
 	margin-bottom: 10px;
 	background-color: white;
 }
+
+.lista-tareas__tareaarea {
+	height: auto;
+	width: 320px;
+	padding: 5px 20px;
+	align-items: center;
+	justify-content: start;
+	color: #4B4B4B;
+	font-size: 18px;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	border: 3px solid #fba83c;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	background-color: rgb(247, 228, 194);
+}
+
+
 .imagenperfil{
 	width:50%;
 	height:110px;
@@ -211,19 +229,23 @@
 	border: 1px solid #fba83c;
 	border-radius: 10px;
 	margin-bottom: 10px;
-	background-color: white;
+	background-color: white
 }
 
 .lista-tareas__texto {
 	text-align: left;
 	width: 100%;
 	color: black;
+	overflow: hidden;
 }
 
 .lista-tareas__tarea:hover .lista-tareas__icono-accion {
 	opacity: 0.8;
 }
 
+.lista-tareas__tareaarea:hover .lista-tareas__icono-accion {
+	opacity: 1;
+}
 .lista-tareas__contenedor-botones {
 	display: flex;
 }
@@ -338,6 +360,33 @@
 	margin: 0 auto;
 }
 
+<<<<<<< HEAD
+.footerhorarios{
+	position: absolute;
+	left: 0%;
+	right: 0%;
+	top: 89.06%;
+	bottom: 0%;
+	background: #FBA83C;
+	border-radius: 15px 15px 0px 0px;
+}
+
+.formulario-tareas__btnhorarios{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border: 8px solid white;
+	background: none;
+	cursor: pointer;
+	color: white;
+	font-weight: 900;
+	background-color: #fba83c;
+	font-size: 20px;
+	border-radius: 50%;
+	bottom: -20px;
+	left: 48%;
+	transform: translateX(-20px);
+=======
 .calificacion{
 	width: 90%;
 	height: 60px;
@@ -392,4 +441,5 @@ td {
 	border: 1px solid #0A8791;
 	box-sizing: border-box;
 	border-radius: 6px;
+>>>>>>> 7d18eb6c5287a42086d4992e0fd92cf81a0e81b4
 }
